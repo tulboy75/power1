@@ -1,0 +1,13 @@
+[
+	{
+		"name": "power",
+		"host": "192.168.56.101",
+		"port": 22,
+		"type": "sftp",
+		"username": "power",
+		"password": "1234",
+		"path": "/home/power/public_html",
+		"autosave": true,
+		"confirm": true
+	}
+]
