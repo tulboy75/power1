@@ -97,6 +97,12 @@
 .register .btn_confirm .btn_close {float:left;height:50px !important;width:49.5%;font-weight:bold;font-size:1.083em}
 .register .btn_confirm {text-align:left}
 .register .btn_confirm .btn_submit {margin-left:1%}
+.register .frm_input_75 { width : 75%; }
+.register .frm_input_60 { width : 62%; }
+.register .frm_input_20 { width : 23%; height : 50px; margin-left : 1%; }
+.register .frm_input_5 { width : 12%; height : 50px; text-align : center; }
+.register .frm_btn_confirm {border :0px; cursor : pointer; outline : 0px; border-radius : 3px; font-size : 1.3em; color : #fff; background : #ff3a8f;}
+.register .label_text {font-size : 1.3em;}
 
 #fregister p {position:relative;text-align:center;color:#fff;height:50px;line-height:50px;font-size:1.1em;background:#f2838f;margin:0 0 10px;border-radius:5px;font-weight:bold}
 #fregister p:before {content:"";position:absolute;top:0;left:0;width:5px;height:50px;border-radius:5px 0 0 5px;background:#da4453}
@@ -128,12 +134,22 @@
 /* 회원가입 입력 */
 #register_form {background:#fff;margin-bottom:20px}
 #register_form h2 {padding:20px;border-bottom:1px solid #dde7e9}
-.register_form_inner {background:#fff;border:1px solid #dde7e9;border-radius:3px}
+.register_form_inner {background:#fff;}
 .register_form_inner ul {padding:30px;}
 .register_form_inner ul li{margin-bottom:30px;}
 .register_form_inner label {display:block;margin-bottom:10px;line-height:24px}
 
 #fregisterform #msg_certify {margin:5px 0 0;padding:5px;border:1px solid #dbecff;background:#eaf4ff;text-align:center}
+
+#agree_all + label{
+    display: block;  margin: 0.2em;  cursor: pointer;  padding: 0.2em; background : #efefef;
+
+
+}
+
+#agree_all { display : none; }
+
+
 #fregisterform .frm_address {margin:5px 0 0}
 #fregisterform #mb_addr3 {display:inline-block;margin:5px 0 0;vertical-align:middle}
 #fregisterform #mb_addr_jibeon {display:block;margin:5px 0 0}
@@ -180,6 +196,7 @@
 #login_fs {padding:35px}
 #mb_login #login_fs .frm_input {margin:0 0 10px}
 #mb_login #login_fs .btn_submit {margin:0 0 15px}
+
 
 #login_info {}
 #login_info:after {display:block;visibility:hidden;clear:both;content:""}

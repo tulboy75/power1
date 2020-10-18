@@ -695,4 +695,5 @@ header('Pragma: no-cache'); // HTTP/1.0
 run_event('common_header');
 
 $html_process = new html_process();
+
 ?>

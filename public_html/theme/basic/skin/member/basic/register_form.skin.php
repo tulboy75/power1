@@ -1,7 +1,7 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
+
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
 ?>
 
@@ -32,7 +32,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        <ul>
             <li>
 	                <label for="reg_mb_name">이름<strong class="sound_only">필수</strong></label>
-	                <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $readonly; ?> class="frm_input full_input <?php echo $readonly ?>" size="10" placeholder="이름">
+	                <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $readonly; ?> class="frm_input full_input required <?php echo $readonly ?>" size="10" placeholder="이름">
 	                <?php
 	                if($config['cf_cert_use']) {
 	                    if($config['cf_cert_ipin'])
@@ -69,7 +69,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                </label>
 	                
                     <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>">
-                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input required nospace full_input" size="10" maxlength="20" placeholder="닉네임">
+                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input frm_input_75 required nospace full_input" size="10" maxlength="20" placeholder="닉네임"> <input type = "button" value = "중복확인" class = "frm_input_20 frm_btn_confirm">
                     <span id="msg_mb_nick"></span>	                
 	            </li>
             <?php }  ?>
@@ -77,10 +77,15 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
 	                <label for="reg_mb_hp">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
 	                
-	                <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input full_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호">
+	                <input type = "text" value = "+82" class = "frm_input frm_input_5" readonly> &nbsp;<input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input frm_input_60  <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호">
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
-	                <?php } ?>
+                    <?php } ?>
+                    <input type = "button" value = "인증번호요청" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em">
+<?php // 인증번호 코드 입력부분 ?>
+                    <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input frm_input_75  <?php echo ($config['cf_req_hp'])?"required":""; ?>" style = "margin-top: 10px;" maxlength="20" placeholder="인증번호를 입력해 주세요.">  
+                    <input type = "button" value = "확인" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em; margin-top : 10px;">    
+<?php // 인증번호 코드 입력부분 끝?>                                                      
 	            <?php }  ?>
             </li>            
             
@@ -100,8 +105,27 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	            <li>
 	                <label for="reg_mb_password_re">비밀번호 확인<strong class="sound_only">필수</strong></label>
 	                <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php echo $required ?> class="frm_input full_input <?php echo $required ?>" minlength="3" maxlength="20" placeholder="비밀번호 확인">
-	            </li>
-	        </ul>
+                </li>
+                
+	            <li>
+	                <label for="reg_mb_ext1">추천인<strong class="sound_only">필수</strong></label>
+	                <input type="text" name="mb_ext1" id="reg_mb_ext1" class="frm_input full_input " minlength="3" maxlength="20" placeholder="추천인코드를 입력해 주세요.">
+                </li>
+                
+                <li class = "reg_mb_agree">
+    
+                        <input type = "checkbox" name = "agree_all" id = 'agree_all'>
+
+                        <label> 뷰티퀸 위치정보 이용약관, 개인정보 수집및 이용에 모두 동의합니다.</label>
+                </li>
+                
+	            <li class="is_captcha_use">
+	                자동등록방지
+	                <?php echo captcha_html(); ?>
+	            </li>                
+            </ul>
+            
+
 	    </div>
 <!--	
 	    <div class="tbl_frm01 tbl_wrap register_form_inner">
@@ -158,6 +182,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	        </ul>
 	    </div>
 -->	
+<!-- 
 	    <div class="tbl_frm01 tbl_wrap register_form_inner">
 	        <h2>기타 개인설정</h2>
 	        <ul>
@@ -273,13 +298,10 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	                <input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input" placeholder="추천인아이디">
 	            </li>
 	            <?php }  ?>
-	
-	            <li class="is_captcha_use">
-	                자동등록방지
-	                <?php echo captcha_html(); ?>
-	            </li>
+
 	        </ul>
-	    </div>
+        </div>
+-->        
 	</div>
 	<div class="btn_confirm">
 	    <a href="<?php echo G5_URL ?>" class="btn_close">취소</a>
