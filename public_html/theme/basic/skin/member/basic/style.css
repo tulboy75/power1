@@ -91,7 +91,7 @@
 
 /* ### 기본 스타일 커스터마이징 끝 ### */
 /* 회원가입 약관 */
-.register {margin:0 auto; max-width : 600px; min-width : 360px;}
+.register {margin:0 auto; width : 100%; max-width : 600px; min-width : 468px;}
 .register:after {display:block;visibility:hidden;clear:both;content:""}
 .register .btn_confirm .btn_submit,
 .register .btn_confirm .btn_close {float:left;height:50px !important;width:49.5%;font-weight:bold;font-size:1.083em}
@@ -138,6 +138,7 @@
 .register_form_inner ul {padding:30px;}
 .register_form_inner ul li{margin-bottom:30px;}
 .register_form_inner label {display:block;margin-bottom:10px;line-height:24px}
+
 
 #fregisterform #msg_certify {margin:5px 0 0;padding:5px;border:1px solid #dbecff;background:#eaf4ff;text-align:center}
 
