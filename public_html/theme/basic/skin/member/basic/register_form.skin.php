@@ -18,6 +18,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	<input type="hidden" name="url" value="<?php echo $urlencode ?>">
 	<input type="hidden" name="agree" value="<?php echo $agree ?>">
 	<input type="hidden" name="agree2" value="<?php echo $agree2 ?>">
+	<input type="hidden" name="token" id = "reg_mb_token" value="<?php echo $token ?>">    
 	<input type="hidden" name="cert_type" value="<?php echo $member['mb_certify']; ?>">
 	<input type="hidden" name="cert_no" value="">
 	<?php if (isset($member['mb_sex'])) {  ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex'] ?>"><?php }  ?>
@@ -69,8 +70,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                </label>
 	                
                     <input type="hidden" name="mb_nick_default" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>">
-                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input frm_input_75 required nospace full_input" size="10" maxlength="20" placeholder="닉네임"> <input type = "button" value = "중복확인" class = "frm_input_20 frm_btn_confirm">
-                    <span id="msg_mb_nick"></span>	                
+                    <input type="text" name="mb_nick" value="<?php echo isset($member['mb_nick'])?get_text($member['mb_nick']):''; ?>" id="reg_mb_nick" required class="frm_input frm_input_75 required nospace full_input" size="10" maxlength="20" placeholder="닉네임"> <input type = "button" name = "mb_nick_chk"  value = "중복확인" class = "frm_input_20 frm_btn_confirm">
+                    <span id="msg_mb_nick" class = "error_msg"></span>	                
 	            </li>
             <?php }  ?>
             <li>
@@ -81,10 +82,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
                     <?php } ?>
-                    <input type = "button" value = "인증번호요청" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em">
+                    <input type = "button" id = "mb_hp_code_req" value = "인증번호요청" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em">
 <?php // 인증번호 코드 입력부분 ?>
-                    <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input frm_input_75  <?php echo ($config['cf_req_hp'])?"required":""; ?>" style = "margin-top: 10px;" maxlength="20" placeholder="인증번호를 입력해 주세요.">  
-                    <input type = "button" value = "확인" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em; margin-top : 10px;">    
+                    <input type="text" name="mb_hp_code" value="" id="reg_mb_hp_code"  class="frm_input frm_input_75 required" style = "margin-top: 10px;" maxlength="6" placeholder="인증번호를 입력해 주세요." readonly >  
+                    <input type = "button" value = "확인" id = "mb_hp_code_con" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em; margin-top : 10px;">
+                    <span id="msg_mb_hp" class = "error_msg"></span>
 <?php // 인증번호 코드 입력부분 끝?>                                                      
 	            <?php }  ?>
             </li>            
@@ -107,22 +109,47 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 	                <input type="password" name="mb_password_re" id="reg_mb_password_re" <?php echo $required ?> class="frm_input full_input <?php echo $required ?>" minlength="3" maxlength="20" placeholder="비밀번호 확인">
                 </li>
                 
+	            <?php if ($w == "" && $config['cf_use_recommend']) {  ?>
 	            <li>
-	                <label for="reg_mb_ext1">추천인<strong class="sound_only">필수</strong></label>
-	                <input type="text" name="mb_ext1" id="reg_mb_ext1" class="frm_input full_input " minlength="3" maxlength="20" placeholder="추천인코드를 입력해 주세요.">
-                </li>
-                
-                <li class = "reg_mb_agree">
-    
-                        <input type = "checkbox" name = "agree_all" id = 'agree_all'>
+                    <label for="reg_mb_ext1">추천인<strong class="sound_only">필수</strong></label>
+	                <input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input full_input" placeholder="추천인 코드를 입력해 주세요.">
+	            </li>
+	            <?php }  ?>
 
-                        <label> 뷰티퀸 위치정보 이용약관, 개인정보 수집및 이용에 모두 동의합니다.</label>
+                <li>
+                    <br/><br/>
+	            </li>
+
+                <li class = "reg_mb_agree_all">
+                        <input type = "checkbox" name = "chk_all" id = 'chk_all'>
+                        <label for = "chk_all"> 뷰티퀸 위치정보 이용약관, 개인정보 수집및 이용에 모두 동의합니다.</label>
+                </li>
+
+                <li class = "reg_mb_agree_1">
+                        <input type = "checkbox" name = "agree1" id = 'agree1'>
+                        <label for = "agree1" style = "font-weight : normal;"> 위치기반 서비스 이용약관에 동의</label>
+                        <textarea>
+                            <?php echo get_text($config['cf_stipulation']) ?>
+                        </textarea>                        
+                </li>                
+                
+                <li class = "reg_mb_agree_2">
+                        <input type = "checkbox" name = "agree2" id = 'agree2'>
+                        <label for = "agree2" style = "font-weight : normal;"> 개인정보 수집 및 이용에 동의</label>
+                        <textarea>
+                            <?php echo get_text($config['cf_privacy']) ?>
+                        </textarea>
+                </li>         
+
+	            <li class="is_captcha_use">
+                    <label>자동등록방지</label>
+	                <?php echo captcha_html(); ?>
                 </li>
                 
-	            <li class="is_captcha_use">
-	                자동등록방지
-	                <?php echo captcha_html(); ?>
-	            </li>                
+	            <li class = 'btn_confirm'>
+                    <button type="submit" id="btn_submit" class="btn_submit" accesskey="s"><?php echo $w==''?'가입하기':'정보수정'; ?></button>
+                </li>    
+                                
             </ul>
             
 
@@ -292,21 +319,17 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 	            }
 	            ?>
 	            
-	            <?php if ($w == "" && $config['cf_use_recommend']) {  ?>
-	            <li>
-	                <label for="reg_mb_recommend" class="sound_only">추천인아이디</label>
-	                <input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input" placeholder="추천인아이디">
-	            </li>
-	            <?php }  ?>
+
 
 	        </ul>
         </div>
--->        
+        
 	</div>
 	<div class="btn_confirm">
 	    <a href="<?php echo G5_URL ?>" class="btn_close">취소</a>
-	    <button type="submit" id="btn_submit" class="btn_submit" accesskey="s"><?php echo $w==''?'회원가입':'정보수정'; ?></button>
-	</div>
+
+    </div>
+-->
 	</form>
 </div>
 <script>
@@ -498,8 +521,95 @@ jQuery(function($){
     }).on("mouseout", ".tooltip_icon", function(e){
         $(this).next(".tooltip").fadeOut();
     });
-});
 
+    // 모두선택
+    $("input[name=chk_all]").click(function() {
+        if ($(this).prop('checked')) {
+            $("input[name^=agree]").prop('checked', true);
+        } else {
+            $("input[name^=agree]").prop("checked", false);
+        }
+    });
+    
+    $("input[name=mb_nick_chk]").click(function(){
+        var mb_nick_form = $("#fregisterform input[name=mb_nick]");
+        $("#msg_mb_nick").text("");
+    // 닉네임 검사
+        if (mb_nick_form.val() == "" ) {
+            $("#msg_mb_nick").text("닉네임을 입력해 주세요.");
+        }
+
+        var msg = reg_mb_nick_check();
+        if(msg){
+            $("#msg_mb_nick").text(msg);
+        }else{
+            alert('사용가능한 닉네임 입니다. ')
+            return true;
+
+        }
+        mb_nick_form.select();
+    });
+
+    // 인증번호 입력시도시 에러 메세지
+    $("#reg_mb_hp_code").click(function(){
+        if($("#reg_mb_hp_code").prop("readonly")){
+            $("#msg_mb_hp").text("인증번호를 요청해 주세요.");
+            return;
+        }
+    });
+    // 인증번호 요청
+    $("#mb_hp_code_req").click(function(){
+        $("#msg_mb_hp").text('');
+        var msg = reg_mb_hp_code_send();
+        if(msg){
+            $("#msg_mb_hp").text(msg);
+            $(this).select();
+            $("#reg_mb_hp_code").prop('readonly', true);            
+            return;
+        }
+        alert('인증코드가 발송되었습니다.');
+        $("#reg_mb_hp").prop('readonly', true);
+        $("#reg_mb_hp_code").prop('readonly', false);
+    });
+
+    //인증번호 확인
+    $("#mb_hp_code_con").click(function(){
+        
+        if($("#reg_mb_hp_code").prop("readonly")){
+            $("#msg_mb_hp").text("인증번호를 요청해 주세요.");
+            return;
+        }        
+
+        var reg_mb_hp_code = $("#reg_mb_hp_code").val();        
+        if(reg_mb_hp_code == ""){
+            $("#msg_mb_hp").text("인증번호를 입력해 주세요.");
+        }
+        var code_test = /^[0-9_]{6}$/;
+        if(!code_test.test(reg_mb_hp_code)){
+            $("#msg_mb_hp").text("인증번호는 6자리 숫자입니다.");
+        }
+        //  문자코드 확인 부분
+        else{
+
+            $("#msg_mb_hp").text('');       
+
+            var msg = reg_mb_hp_code_chk();
+            if(msg){
+                $("#msg_mb_hp").text(msg);
+            }else{
+                alert('인증에 성공하였습니다.');
+                $("#reg_mb_hp_code").prop('readonly', true);
+            }
+        }
+
+        
+        
+
+    });
+
+
+    
+});
 </script>
 
 <!-- } 회원정보 입력/수정 끝 -->

@@ -180,4 +180,61 @@ function exist_mb_hp($reg_mb_hp, $reg_mb_id)
     else
         return "";
 }
+
+
+function send_mb_hp($reg_mb_hp, $phone, $ss_token, $apiKey, $apiSecret)
+{
+    global $g5;
+
+    //토큰번호를 비교해 현재 가입중인 회원인지 확인한다.
+    $token = get_session('ss_token');
+
+    if($ss_token != $token)
+        return "정상적인 접근이 아닙니다.";
+
+    if (!trim($reg_mb_hp)) return "전화번호를 입력해주세요.";
+
+    date_default_timezone_set('Asia/Seoul');
+    $date = date('Y-m-d\TH:i:s.Z\Z', time());  // date must be ISO 8361 format
+    $salt = uniqid(); // Any random strings with [0-9a-zA-Z]
+    $signature = hash_hmac('sha256', $date.$salt, $apiSecret);
+
+    
+    $cert_num = rand(100000, 999999);
+    $cert_num = "123456";    
+    return "";
+    //  세션에 cert_num을 추가 합니다. 
+    set_session("reg_mb_hp_code", $cert_num);
+    $sms_msg = "뷰티퀸 입니다. \r\n고객님의 인증번호는 [$cert_num] 입니다.";
+
+    $url = "https://api.coolsms.co.kr/messages/v4/send";
+    $fields = new stdClass();
+    $message = new stdClass();
+    $message->text = $sms_msg;
+    $message->type = 'SMS';
+    $message->to = $reg_mb_hp;
+    $message->from = $phone;
+    $fields->message = $message;
+    $fields_string = json_encode($fields);
+    $header = "Authorization: HMAC-SHA256 apiKey={$apiKey}, date={$date}, salt={$salt}, signature={$signature}";
+    
+
+    //open connection
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array($header, "Content-Type: application/json"));
+    curl_setopt($ch, CURLOPT_POST, count($fields));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+
+    $result = curl_exec($ch);
+    $retArr = json_decode($result); // 결과배열
+    
+    if($retArr->statusCode == '2000')
+	    return "";
+    else
+        return "인증번호 발송에 실패 했습니다. 다시 요청해 주세요.";
+        
+}
+
 ?>

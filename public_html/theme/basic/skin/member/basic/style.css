@@ -141,19 +141,46 @@
 
 #fregisterform #msg_certify {margin:5px 0 0;padding:5px;border:1px solid #dbecff;background:#eaf4ff;text-align:center}
 
-#agree_all + label{
-    display: block;  margin: 0.2em;  cursor: pointer;  padding: 0.2em; background : #efefef;
+#fregisterform .reg_mb_agree_all label{ font-size : 1.6em; }
+/* 체크박스 이미지 변경 */
+#fregisterform input[type=checkbox] {
+    display : none;
 
+ }
 
+#fregisterform input[type=checkbox] + label{
+    display: block;  margin: 0.2em;  cursor: pointer;  padding: 0.2em; ;
+}
+#fregisterform input[type=checkbox] + label:before {
+    content: "\2714";  background : #999; border-radius: 1em; display: inline-block; width: 1.4em; height: 1.4em;  margin-right: 0.2em; vertical-align: bottom; font-size : 0.9em; padding : 0.2em; text-align : center;  color: transparent; transition: .2s; color : #fff; box-sizing : content-box;
 }
 
-#agree_all { display : none; }
+#fregisterform input[type=checkbox] + label:active:before {
+    transform: scale(0);
+}
 
+#fregisterform input[type=checkbox]:checked + label:before {
+    background-color: #ff3a8f; border-color:#ff3a8f; color: #fff;
+}
 
+#fregisterform input[type=checkbox]:disabled + label:before {
+    transform: scale(1);
+    border-color: #aaa;
+}
+
+#fregisterform input[type=checkbox]:checked:disabled + label:before {
+    transform: scale(1);
+    background-color: #bfb;
+    border-color: #bfb;
+  }
+
+/* 체크박스 이미지 변경 끝 */
+#fregisterform .error_msg { font-size : 1.2em; color : red;}
 #fregisterform .frm_address {margin:5px 0 0}
 #fregisterform #mb_addr3 {display:inline-block;margin:5px 0 0;vertical-align:middle}
 #fregisterform #mb_addr_jibeon {display:block;margin:5px 0 0}
-#fregisterform .btn_confirm {text-align:center}
+#fregisterform .btn_confirm {text-align:center;}
+#fregisterform .btn_submit {text-align:center; width : 98%; height: 70px !important; background : #ff3a8f; font-size : 1.6em;  }
 #fregisterform .form_01 div {margin:0 0 20px}
 #fregisterform .captcha {display:block;margin:5px 0 0}
 #fregisterform .reg_mb_img_file img {max-width:100%;height:auto}

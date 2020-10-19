@@ -90,3 +90,42 @@ var reg_mb_hp_check = function() {
     });
     return result;
 }
+
+// 인증코드 발송
+var reg_mb_hp_code_send = function() {
+
+    var result = "";
+    $.ajax({
+        type: "POST",
+        url: g5_bbs_url+"/ajax.mb_hp_code.php",
+        data: {
+            "reg_mb_hp": $("#reg_mb_hp").val(),
+            "reg_mb_id": encodeURIComponent($("#reg_mb_id").val()),
+            "reg_mb_token" : $("#reg_mb_token").val()
+        },
+        cache: false,
+        async: false,
+        success: function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
+//  인증코드 확인
+var reg_mb_hp_code_chk = function() {
+    var result = "";
+    $.ajax({
+        type : "POST",
+        url : g5_bbs_url + "/ajax.mb_hp_code_chk.php",
+        data : {
+            "reg_mb_hp_code" : $("#reg_mb_hp_code").val(),
+        },
+        cache: false,
+        async: false,
+        success: function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
