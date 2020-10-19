@@ -201,8 +201,6 @@ function send_mb_hp($reg_mb_hp, $phone, $ss_token, $apiKey, $apiSecret)
 
     
     $cert_num = rand(100000, 999999);
-    $cert_num = "123456";    
-    return "";
     //  세션에 cert_num을 추가 합니다. 
     set_session("reg_mb_hp_code", $cert_num);
     $sms_msg = "뷰티퀸 입니다. \r\n고객님의 인증번호는 [$cert_num] 입니다.";

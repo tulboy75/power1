@@ -560,6 +560,8 @@ jQuery(function($){
     // 인증번호 요청
     $("#mb_hp_code_req").click(function(){
         $("#msg_mb_hp").text('');
+        $("#reg_mb_hp_code").attr('disabled', false);
+        $("#reg_mb_hp_code").select();     
         var msg = reg_mb_hp_code_send();
         if(msg){
             $("#msg_mb_hp").text(msg);
@@ -598,7 +600,7 @@ jQuery(function($){
                 $("#msg_mb_hp").text(msg);
             }else{
                 alert('인증에 성공하였습니다.');
-                $("#reg_mb_hp_code").prop('readonly', true);
+                $("#reg_mb_hp_code").attr('disabled', true);                
             }
         }
 
