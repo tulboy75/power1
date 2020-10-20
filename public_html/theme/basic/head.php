@@ -46,5 +46,10 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     <div id="container_wr">
    
     <div id="container">
-        <?php if (!defined("_INDEX_")) { ?><div id="container_title"><span title="<?php echo get_text($g5['title']); ?>"><?php echo get_head_title($g5['title']); ?></span></div><?php } ?>
+        <?php if (!defined("_INDEX_")) { ?>
+            <div id="container_title">
+                <span class = "back_btn"> < </span>
+                <span title="<?php echo get_text($g5['title']); ?>"><?php echo get_head_title($g5['title']); ?></span>
+            </div>
+        <?php } ?>
         

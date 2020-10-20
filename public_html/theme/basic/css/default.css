@@ -46,7 +46,7 @@ border:1px solid #558ab7 !important;
 .placeholdersjs {color:#aaa !important}
 
 /* 레이아웃 크기 지정 */
-#hd, #wrapper, #ft {min-width : 400px;}
+#hd, #wrapper, #ft {}
 
 #hd_pop,
 #hd_wrapper,
@@ -162,6 +162,7 @@ box-shadow:0 2px 5px rgba(0,0,0,0.2)}
     background-size: cover;
     height: 100%;
     background-position: center;
+
     background-image : url('/theme/basic/img/main.jpg');
 }
 
@@ -169,10 +170,11 @@ box-shadow:0 2px 5px rgba(0,0,0,0.2)}
 #container_wr {margin:0 auto;height:100%;zoom:1}
 #aside {float:right;width:235px;padding:0;height:100%;margin:0px}
 
-#container {position:relative;float:left;min-height:500px;height:auto !important;margin:20px 0;height:500px;font-size:1em;width:100%;zoom:1}
+#container {position:relative;float:left;min-height:500px;height:auto !important;min-height:500px;font-size:1em;width:100%;zoom:1}
 #container:after {display:block;visibility:hidden;clear:both;content:""}
-#container_title {font-size:2.5em; padding : 30px; margin:0 auto;font-weight:bold; text-align : center; }
-#container_title span {margin:0 auto 10px;display:block;line-height:30px}
+#container_title {font-size:2em; padding : 20px; background-color : #fff; border-bottom : 1px solid #d9d9d9; margin:0 auto; text-align : center; }
+#container_title span {display:block;}
+#container_title .back_btn{float : left; cursor : pointer; }
 
 .lt_wr {width:32%}
 .lt_wr:nth-child(3n+1) {clear:both}

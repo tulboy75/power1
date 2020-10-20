@@ -766,4 +766,8 @@ $(function() {
 
         return true;
     });
+
+    $(".back_btn").click(function(){
+       history.back();
+    });
 });

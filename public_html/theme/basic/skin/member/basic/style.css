@@ -91,15 +91,15 @@
 
 /* ### 기본 스타일 커스터마이징 끝 ### */
 /* 회원가입 약관 */
-.register {margin:0 auto; width : 100%; max-width : 600px; min-width : 468px;}
+.register {margin:0 auto; width : 100%; max-width : 600px;}
 .register:after {display:block;visibility:hidden;clear:both;content:""}
 .register .btn_confirm .btn_submit,
 .register .btn_confirm .btn_close {float:left;height:50px !important;width:49.5%;font-weight:bold;font-size:1.083em}
 .register .btn_confirm {text-align:left}
 .register .btn_confirm .btn_submit {margin-left:1%}
-.register .frm_input_75 { width : 75%; }
-.register .frm_input_60 { width : 62%; }
-.register .frm_input_20 { width : 23%; height : 50px; margin-left : 1%; }
+.register .frm_input_75 { width : 70%; }
+.register .frm_input_60 { width : 57%; }
+.register .frm_input_20 { width : 27%; height : 50px; margin-left : 1%; }
 .register .frm_input_5 { width : 12%; height : 50px; text-align : center; }
 .register .frm_btn_confirm {border :0px; cursor : pointer; outline : 0px; border-radius : 3px; font-size : 1.3em; color : #fff; background : #ff3a8f;}
 .register .label_text {font-size : 1.3em;}
