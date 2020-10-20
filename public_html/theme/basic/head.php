@@ -28,7 +28,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
     <div id="hd_wrapper">
         <div class = "menu_btn">
-            <a href="javascript:" class="btn_gnb mobile_only" title="모바일 메뉴 열기/닫기">
+            <a href="javascript:" id = "gnb_btn" class="btn_gnb mobile_only" title="모바일 메뉴 열기/닫기">
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </a>   
         </div>
@@ -36,8 +36,25 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_THEME_IMG_URL ?>/bq_logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
         </div>
 
-
+        <div class="menu_panel left">
+            <!-- 눌렀을경우 메뉴가 나타나고, 사라지는 부분 -->
+            <a class="gnb_btn" title="menu"><span>X</span></a>            
+            <!-- 메뉴의 내용부분 -->
+            <div class="mo-menu-title">
+                    <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_THEME_IMG_URL ?>/bq_logo.png" alt="<?php echo $config['cf_title']; ?>" style = "width : 30%;"></a>                    
+            </div>
+            <ul>
+                <li class="menu-label"><a href="#">사업개요</a></li>
+                <li class="menu-label"><a href="#">입지환경</a></li>
+                <li class="sub-menu"><a href="#">개발계획</a></li>
+                <li class="menu-label"><a href="#">분양안내</a></li>
+                <li class="sub-menu"><a href="#">분양일정</a></li>
+                <li class="sub-menu"><a href="#">분양가격</a></li>
+                <li class="sub-menu"><a href="#">분양혜택</a></li>
+            </ul>
+        </div>
     </div>
+    <div class="panel-overlay"></div>    
 
 </div>
 <!-- } 상단 끝 -->
