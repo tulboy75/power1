@@ -234,5 +234,4 @@ function send_mb_hp($reg_mb_hp, $phone, $ss_token, $apiKey, $apiSecret)
         return "인증번호 발송에 실패 했습니다. 다시 요청해 주세요.";
         
 }
-
 ?>

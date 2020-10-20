@@ -100,14 +100,14 @@ if ($w == '' || $w == 'u') {
 
     if ($msg = empty_mb_name($mb_name))       alert($msg, "", true, true);
     if ($msg = empty_mb_nick($mb_nick))     alert($msg, "", true, true);
-    if ($msg = empty_mb_email($mb_email))   alert($msg, "", true, true);
+    //if ($msg = empty_mb_email($mb_email))   alert($msg, "", true, true);
     if ($msg = reserve_mb_id($mb_id))       alert($msg, "", true, true);
     if ($msg = reserve_mb_nick($mb_nick))   alert($msg, "", true, true);
     // 이름에 한글명 체크를 하지 않는다.
     //if ($msg = valid_mb_name($mb_name))     alert($msg, "", true, true);
     if ($msg = valid_mb_nick($mb_nick))     alert($msg, "", true, true);
-    if ($msg = valid_mb_email($mb_email))   alert($msg, "", true, true);
-    if ($msg = prohibit_mb_email($mb_email))alert($msg, "", true, true);
+//    if ($msg = valid_mb_email($mb_email))   alert($msg, "", true, true);
+//    if ($msg = prohibit_mb_email($mb_email))alert($msg, "", true, true);
 
     // 휴대폰 필수입력일 경우 휴대폰번호 유효성 체크
     if (($config['cf_use_hp'] || $config['cf_cert_hp']) && $config['cf_req_hp']) {
@@ -115,15 +115,18 @@ if ($w == '' || $w == 'u') {
     }
 
     if ($w=='') {
+
         if ($msg = exist_mb_id($mb_id))     alert($msg);
+// 파워소프트 메일 관련해서 삭제 부분
+//        if (get_session('ss_check_mb_id') != $mb_id || get_session('ss_check_mb_nick') != $mb_nick || get_session('ss_check_mb_email') != $mb_email) {
+//         if (get_session('ss_check_mb_id') != $mb_id || get_session('ss_check_mb_nick') != $mb_nick ) {
 
-        if (get_session('ss_check_mb_id') != $mb_id || get_session('ss_check_mb_nick') != $mb_nick || get_session('ss_check_mb_email') != $mb_email) {
-            set_session('ss_check_mb_id', '');
-            set_session('ss_check_mb_nick', '');
-            set_session('ss_check_mb_email', '');
+//             set_session('ss_check_mb_id', '');
+//             set_session('ss_check_mb_nick', '');
+// //          set_session('ss_check_mb_email', '');
 
-            alert('올바른 방법으로 이용해 주십시오.');
-        }
+//             alert('올바른 방법으로 이용해 주십시오.');
+//         }
 
         // 본인확인 체크
         if($config['cf_cert_use'] && $config['cf_cert_req']) {
@@ -151,7 +154,7 @@ if ($w == '' || $w == 'u') {
     run_event('register_form_update_valid', $w, $mb_id, $mb_nick, $mb_email);
 
     if ($msg = exist_mb_nick($mb_nick, $mb_id))     alert($msg, "", true, true);
-    if ($msg = exist_mb_email($mb_email, $mb_id))   alert($msg, "", true, true);
+//    if ($msg = exist_mb_email($mb_email, $mb_id))   alert($msg, "", true, true);
 }
 
 // 사용자 코드 실행
