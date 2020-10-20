@@ -134,9 +134,11 @@
 /* 회원가입 메뉴 */
 .register_menu li{ float : left; width : 50%; padding : 20px 0px; font-size : 1.7em; font-weight : bold;  box-sizing : border-box; border-bottom : 1px solid #d9d9d9; text-align : center; cursor : pointer;  }
 
-.register_menu li.over, .register_menu li:hover {border-bottom : 1px solid #ff3a8f; color : #ff3a8f;}
-.register_menu li:first-child{ border-right : 0px; }
+.register_menu li, .register_menu li a{color : #999;}
 
+.register_menu li.over, .register_menu li:hover {border-bottom : 1px solid #ff3a8f; }
+.register_menu li:first-child{ border-right : 0px; }
+.register_menu li.over, .register_menu li a:hover, .register_menu li.over a{color : #ff3a8f;}
 
 /* 회원가입 입력 */
 #register_form {background:#fff;margin-bottom:20px}

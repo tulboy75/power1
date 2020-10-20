@@ -16,7 +16,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 ?>
 
 <!-- 상단 시작 { -->
-<div id="hd" style= "display : none;">
+<div id="hd" >
     <h1 id="hd_h1"><?php echo $g5['title'] ?></h1>
     <div id="skip_to_container"><a href="#container">본문 바로가기</a></div>
 
@@ -27,11 +27,15 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     ?>
 
     <div id="hd_wrapper">
-
-        <div id="logo">
-            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_IMG_URL ?>/logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+        <div class = "menu_btn">
+            <a href="javascript:" class="btn_gnb mobile_only" title="모바일 메뉴 열기/닫기">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>   
         </div>
-    
+        <div id="logo">
+            <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_THEME_IMG_URL ?>/bq_logo.png" alt="<?php echo $config['cf_title']; ?>"></a>
+        </div>
+
 
     </div>
 

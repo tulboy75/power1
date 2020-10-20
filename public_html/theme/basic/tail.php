@@ -6,14 +6,52 @@ if (G5_IS_MOBILE) {
     return;
 }
 ?>
-
+    
     </div>
 </div>
 
 </div>
 <!-- } 콘텐츠 끝 -->
 
+<hr>
+
 <!-- 하단 시작 { -->
+<div id="ft">
+
+    <div id="ft_wr">
+        <div class = "ft_company_info">
+            회사소개  ㅣ  위치기반 서비스 이용약관  ㅣ  개인정보 수집 및 이용  ㅣ 사업자 정보확인 | 가맹점 로그인  ㅣ  가맹점 회원가입
+        </div>
+        <div id="ft_company" class="ft_cnt">
+        	<h2>뷰티퀸</h2>
+	        <p class="ft_info">
+                주소  : 서울특별시 영등포구 영등포로 1, 123빌딩 11층<br>                
+                대표이사 : 신태관 | 사업자등록번호 : 123-456-78945
+	        	통신판매업신고번호 :  2000 - 서울영등포 - 012345<br>
+				전자우편주소 : qwerty@google.com<br>
+<!--                
+				전화 :  02-123-4567  팩스  : 02-123-4568<br>                
+                개인정보관리책임자 :  정보책임자명<br>
+-->
+            </p>
+                Copyright &copy; <b>beautyqueen.</b> All rights reserved.            
+	    </div>
+	</div>      
+        <!-- <div id="ft_catch"><img src="<?php echo G5_IMG_URL; ?>/ft_logo.png" alt="<?php echo G5_VERSION ?>"></div> -->
+    
+    
+    <button type="button" id="top_btn">
+    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span>
+    </button>
+    <script>
+    $(function() {
+        $("#top_btn").on("click", function() {
+            $("html, body").animate({scrollTop:0}, '500');
+            return false;
+        });
+    });
+    </script>
+</div>
 
 <?php
 if(G5_DEVICE_BUTTON_DISPLAY && !G5_IS_MOBILE) { ?>
