@@ -86,7 +86,16 @@ border:1px solid #558ab7 !important;
 #hd_wrapper .menu_btn a {font-size : 3em; font-weight : 100; color : #000; }
 
 .menu_panel { 
-    transition: all 1s ease-in-out;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;position: fixed;z-index: 9999;top: 0;height: 100%; width: 75%; max-width : 350px;  background-color: #fff; border-right : 1px solid #ccc; 
+    position : relative; transition: all 1s ease-in-out;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;position: fixed;z-index: 9999;top: 0;height: 100%; width: 75%; max-width : 350px;  background-color: #fff; border-right : 1px solid #ccc; 
+}
+
+.menu_panel .gnb_close_btn a{
+    position : absolute;
+    right : 20px;
+    top : 20px;
+    font-size : 3em;
+    color : #999;
+    cursor : pointer; 
 }
 
 .menu_panel ul {
@@ -100,6 +109,7 @@ border:1px solid #558ab7 !important;
 }
   
 .menu_panel ul li,
+
 .menu_panel ul a {
     display: inline-block;
     width: 100%;
@@ -112,7 +122,7 @@ border:1px solid #558ab7 !important;
 }
 
 .menu_panel .mo-menu-title {
-    padding : 40px 0px 20px 20px;; 
+    padding : 40px 0px 20px 10%;
     text-align : left; 
 }
 
@@ -126,11 +136,41 @@ border:1px solid #558ab7 !important;
   }
 
   /* 패널이 활성화 되었을때 */
-  .menu_panel.active {
+.menu_panel.active {
     left: 0;
   }
+.menu_panel .gnb_member_menu{
+    width : 90%;
+    margin : 0 auto;
+    margin-top: 30px;
+}
 
+.menu_panel .gnb_member_menu:after{
+    display:block;visibility:hidden;clear:both;content:""
+}
 
+.menu_panel .gnb_member_menu li{
+    float : left; 
+    display : inline-block;
+    margin-left : 3%;
+    padding : 10px 0px;
+    text-align : center;
+    border : 1px solid #ff3a8f;
+    width: 47%;
+    border-radius : 3px;
+}
+
+.menu_panel .gnb_member_menu li a{
+    color : #ff3a8f;    
+}
+.menu_panel .gnb_member_menu li.over{
+    
+    background-color : #ff3a8f;    
+}
+
+.menu_panel .gnb_member_menu li.over a{
+    color : #fff; 
+}
 .hd_sch_wr {float:left;padding:30px 0;;width:445px;margin-left:65px}
 #hd_sch h3 {position:absolute;font-size:0;line-height:0;overflow:hidden}
 #hd_sch {border-radius:30px;overflow:hidden}
@@ -212,10 +252,10 @@ box-shadow:0 2px 5px rgba(0,0,0,0.2)}
 }
 /* background-image : url('/theme/basic/img/main.jpg'); */
 #container_wr:after {display:block;visibility:hidden;clear:both;content:""}
-#container_wr {margin:0 auto;height:100%;zoom:1}
+#container_wr {margin:0 auto;zoom:1}
 #aside {float:right;width:235px;padding:0;height:100%;margin:0px}
 
-#container {position:relative;float:left;min-height:500px;height:auto !important;min-height:500px;font-size:1em;width:100%;zoom:1}
+#container {position:relative;float:left;height:auto !important;font-size:1em;width:100%;zoom:1}
 #container:after {display:block;visibility:hidden;clear:both;content:""}
 #container_title {font-size:2em; padding : 20px; background-color : #fff; border-bottom : 1px solid #d9d9d9; margin:0 auto; text-align : center; }
 #container_title span {display:block;}
@@ -234,13 +274,15 @@ box-shadow:0 2px 5px rgba(0,0,0,0.2)}
 /* 하단 레이아웃 */
 #ft {background:#f6f6f6;margin:0 auto;text-align:center; color : #999; background : #fff;}
 #ft h1 {position:absolute;font-size:0;line-height:0;overflow:hidden}
+#ft h2 { padding-left : 20px;}
 #ft_wr {max-width:1440px;margin:0; position:relative;display:inline-block;text-align:left}
 #ft_wr:after {display:block;visibility:hidden;clear:both;content:""}
 #ft_wr .ft_cnt {width : 100%; padding-bottom : 30px; }
 
-#ft .ft_company_info{ background : #fff; font-size : 1.4em; text-align : center; padding : 15px 20px; color : #000;}
+#ft .ft_company_info{ background : #fff; margin-top : 30px; border-top : 1px solid #d9d9d9; font-size : 1.2em; text-align : left; padding : 15px 20px; color : #000;}
 
-#ft .ft_info{ font-size : 1.3em; color : #999; }
+
+#ft .ft_info{ font-size : 1.3em; color : #999;  padding : 0px 20px;}
 
 #ft_link {text-align:left}
 #ft_link a {display:block;color:#999;line-height:2em;font-weight:bold}

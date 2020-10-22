@@ -38,11 +38,19 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
         <div class="menu_panel left">
             <!-- 눌렀을경우 메뉴가 나타나고, 사라지는 부분 -->
-            <a class="gnb_btn" title="menu"><span>X</span></a>            
+            <div class = "gnb_close_btn"><a class="gnb_btn" title="menu"><i class="fa fa-times"></i></a></div>
             <!-- 메뉴의 내용부분 -->
             <div class="mo-menu-title">
                     <a href="<?php echo G5_URL ?>"><img src="<?php echo G5_THEME_IMG_URL ?>/bq_logo.png" alt="<?php echo $config['cf_title']; ?>" style = "width : 30%;"></a>                    
             </div>
+            <div>
+            <ul class="gnb_member_menu">
+                <li class="gnb_member"><a href="<?php echo G5_BBS_URL?>/login.php">로그인</a></li>
+                <li class="gnb_member over"><a href="<?php echo G5_BBS_URL?>/register_form.php">회원가입</a></li>
+            </ul>
+            <hr style = "width: 90%; display : inline-block; border-top : 1px solid #d9d9d9; margin-top : 20px;">
+            </div>
+
             <ul>
                 <li class="menu-label"><a href="#">사업개요</a></li>
                 <li class="menu-label"><a href="#">입지환경</a></li>
