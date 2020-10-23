@@ -59,7 +59,15 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             <ul>
                 <li class="menu-label"><a href="<?php echo G5_BBS_URL?>/member_reco_list.php"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon01.png"> <span class = 'gnb_menu_list_title'>&nbsp;추천회원가입리스트</span></a></li>
                 <li class="menu-label"><a href="<?php echo G5_BBS_URL?>/member_reco_code.php"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon02.png"> <span class = 'gnb_menu_list_title'>&nbsp;추천코드 주소</span></a></li>
-                <li class="menu-label"><a href="#"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon03.png"> <span class = 'gnb_menu_list_title'>&nbsp;코인내역</span></a></li>
+                <li class="menu-label"><a href="<?php echo G5_BBS_URL?>/point.php"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon03.png"> <span class = 'gnb_menu_list_title'>&nbsp;코인받은내역</span></a></li>                
+                <li class="menu-label">
+                    <a href="#">
+                        <img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon03.png"> <span class = 'gnb_menu_list_title'>&nbsp;
+                            코인내역</span></a><br/>
+                    <a href="<?php echo G5_BBS_URL?>/point_send.php"><span style = "padding-left : 40px; font-size : 1.2em;"> - 코인전송</span></a><br/>
+                    <a href="<?php echo G5_BBS_URL?>/point_send_list.php"><span style = "padding-left : 40px; font-size : 1.2em;"> - 전송내역</span></a><br/>
+
+                </li>
                 <li class="menu-label"><a href="<?php echo G5_BBS_URL?>/member_reco_list.php?rt=store"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon01.png"> <span class = 'gnb_menu_list_title'>&nbsp;가맹점가입리스트</span></a></li>                
                 <li class="menu-label"><a href="#"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon04.png"> <span class = 'gnb_menu_list_title'>&nbsp;회원정보수정</span></a></li>
             </ul>

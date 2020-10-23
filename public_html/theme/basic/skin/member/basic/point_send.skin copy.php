@@ -31,28 +31,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         </button>
         </form>
     </div>
-    <table class = "member_list_table">
-        <tr>
-            <th style = "width : 50px;">프로필</th>
-            <th>개수</th>            
-            <th style = "text-align : left;">닉네임</th>
-            <th>날짜</th>
-        </tr>
-        <?php foreach($po_list as $key => $row){ ?>
-        <tr>                
-            <td><img src = "<?php echo G5_THEME_IMG_URL?>/member_list_profile.png" width = "50px"></td>
-            <td style = "color : #ff3a8f"><?php echo number_format($row['po_point']); ?></td>
-            <td style = "text-align:left;"><?php echo $row['mb_nick'] ?></td>
-            <td><?php echo substr($row['po_datetime'], 0 ,10); ?></td>
-        </tr>            
-        <?php } ?>
 
-        <?php if($po_count == 0){ ?>
-        <tr>
-            <td colspan = "4"> 추천 회원이 없습니다.</td>
-        </tr>            
-        <?php } ?>
-    </table>
     <div style = "text-align : center;"><?php echo get_paging(G5_IS_MOBILE ? $config['cf_mobile_pages'] : $config['cf_write_pages'], $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page='); ?></div>
 
     <br/><br/><br/><br/><br/><br/>

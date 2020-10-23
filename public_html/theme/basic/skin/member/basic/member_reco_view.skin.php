@@ -69,23 +69,30 @@ add_javascript('<script src="'.G5_JS_URL.'/signature_pad.js"></script>', 0);
             </textarea>
 
         <div class = "view_title"> 서명</div>
-        <div id = "mb_signature_pad" style = "width : 100%; height : 300px;">
-            <canvas style = "border : 1px solid #ccc; width : 100%; height : 300px;"></canvas>
-            <ul style = "margin-top : 10px;">
+        <div id = "mb_signature_pad">
+        <?php if($row['mb_signature'] == ""){ ?>
+            <canvas style = "border : 1px solid #ccc; width : 100%; height : 300px;" id = "canvas_sign"></canvas>
+            <ul style = "margin-top : 10px;" id = "canvas_btn">
                 <li><input type = "button" value = "다시그리기" class = "signature_reset_btn"></li>
                 <li><input type = "button" value = "저장하기" class= "signature_save_btn"></li>
             </ul>
-
+        <?php } ?>
         </div>
-        <div id = "draw" style  = "width : 100%; height : 300px;">
-
-
-
-
-        </div>
+        <form name = "member_sign_update" id = "member_sign_update" method = "post" action = "<?php echo G5_BBS_URL ?>/member_sign_update.php">
+            <input type = "hidden" name = "member_sign" id = "member_sign">
+            <input type = "hidden" name = "mb_no"  value = "<?php echo $row['mb_no']?>">            
+        </form>
     </div>
-    <br/><br/><br/><br/><br/>    <br/><br/><br/><br/><br/>    <br/><br/><br/><br/><br/>
+
 </div>
+<br/><br/>    <br/><br/><br/><br/>    <br/><br/>
+<?php if($row['mb_signature'] != ""){ ?>
+<style>
+#mb_signature_pad{
+    background : url("<?php echo $row['mb_signature'] ?>") no-repeat;
+}
+</style>
+<?php  } ?>
 <script>
 var wrapper = document.getElementById("mb_signature_pad");
 var clearButton = wrapper.querySelector(".signature_reset_btn");
@@ -133,7 +140,8 @@ saveSVGButton.addEventListener("click", function (event) {
     alert("서명하신 후 저장해주세요.");
   } else {
     var dataURL = signaturePad.toDataURL('image/svg+xml');
-    $("#contract").html(dataURL);
+    $("#member_sign").val(dataURL);
+    $("#member_sign_update").submit();
   }
 });
 </script>

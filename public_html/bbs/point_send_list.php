@@ -4,15 +4,10 @@ include_once('./_common.php');
 if ($is_guest)
     alert_close('회원만 조회하실 수 있습니다.');
 
-$g5['title'] = "받은내역";
+$g5['title'] = "코인전송";
 
-$s_nick = escape_trim($_REQUEST['mb_search_nick']);
+//닉네임을 통해서 코인 전송
 
-$sql = "select mb_id from " . $g5['member_table'] . " where mb_nick = '" . $s_nick . "'";
-$row = sql_fetch($sql);
-
-
-$s_id = $row['mb_id'];
 
 
 if($s_id != ""){
@@ -54,7 +49,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++) {
 
 include_once('./_head.sub.php');
 
-include_once($member_skin_path.'/point.skin.php');
+include_once($member_skin_path.'/point_send.skin.php');
 
 include_once('./_tail.sub.php');
 ?>

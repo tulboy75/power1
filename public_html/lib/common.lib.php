@@ -976,18 +976,18 @@ function insert_point($mb_id, $point, $content='', $rel_table='', $rel_id='', $r
     // 회원포인트
     $mb_point = get_point_sum($mb_id);
 
-    // 이미 등록된 내역이라면 건너뜀
-    if ($rel_table || $rel_id || $rel_action)
-    {
-        $sql = " select count(*) as cnt from {$g5['point_table']}
-                  where mb_id = '$mb_id'
-                    and po_rel_table = '$rel_table'
-                    and po_rel_id = '$rel_id'
-                    and po_rel_action = '$rel_action' ";
-        $row = sql_fetch($sql);
-        if ($row['cnt'])
-            return -1;
-    }
+    // 이미 등록된 내역이라면 건너뜀 - 파워소프트 삭제 전송이 같을 수 있음
+    // if ($rel_table || $rel_id || $rel_action)
+    // {
+    //     $sql = " select count(*) as cnt from {$g5['point_table']}
+    //               where mb_id = '$mb_id'
+    //                 and po_rel_table = '$rel_table'
+    //                 and po_rel_id = '$rel_id'
+    //                 and po_rel_action = '$rel_action' ";
+    //     $row = sql_fetch($sql);
+    //     if ($row['cnt'])
+    //         return -1;
+    // }
 
     // 포인트 건별 생성
     $po_expire_date = '9999-12-31';
