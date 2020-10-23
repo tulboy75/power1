@@ -135,6 +135,28 @@
 .mbskin .frm_input_5 { width : 12%; height : 50px; text-align : center; }
 .mbskin .frm_btn_confirm{background : #ff3a8f; color : #fff; border : 0px; border-radius : 3px; }
 .mbskin .error_msg { font-size : 1.2em; color : red;}
+
+.mbskin .member_name { font-size : 1.4em; margin-top : 20px;}
+.mbskin .member_reco_list_box{text-align : center; }
+.mbskin .member_reco_list_box .member_profile{display : inline-block;}
+.mbskin .member_reco_list_box .member_name{text-align : left;}
+.mbskin .member_reco_list_box .member_profile:after{display:block;visibility:hidden;clear:both;content:""}
+.mbskin .member_reco_list_box .member_profile li {float : left; padding-left : 30px; font-size : 2em;}
+
+.mbskin .search_field { position : relative; padding : 20px 20px;  background-color : #f6f6f6; margin-top : 30px;}
+.mbskin .search_field input {border-radius : 25px; font-size : 1.4em;}
+.mbskin .search_field .search_icon {}
+.mbskin .search_field .mb_list_submit_btn{ position : absolute; top : 30px; right : 40px; border : 0px; background : none; }
+.mbskin .search_field .mb_list_submit_btn i{color : #999;}
+.mbskin .member_list_table { width : 100%; margin-top : 20px; margin-bottom : 50px; font-size : 1.2em;}
+.mbskin .member_list_table th{ padding : 10px 0px ; border-bottom  : 3px solid #f6f6f6 ; border-top : 3px solid #f6f6f6}
+.mbskin .member_list_table td{ padding : 10px 0px ; border-bottom  : 1px solid #f6f6f6 ; }
+
+.mbskin .member_code_box { font-size : 1.4em; text-align : center; margin-top : 30px; }
+.mbskin .member_code_box .member_reco_code_url_box{ padding : 15px; background : #f6f6f6; border-radius : 25px; cursor : pointer; text-align : center;}
+.mbskin .member_code_box .title {  font-size : 1.6em; padding : 10px; }
+
+
 /* ### 기본 스타일 커스터마이징 끝 ### */
 /* 회원가입 약관 */
 .register {margin:0 auto; width : 100%; max-width : 600px;}
