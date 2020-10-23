@@ -156,6 +156,25 @@
 .mbskin .member_code_box .member_reco_code_url_box{ padding : 15px; background : #f6f6f6; border-radius : 25px; cursor : pointer; text-align : center;}
 .mbskin .member_code_box .title {  font-size : 1.6em; padding : 10px; }
 
+.mbskin .check_circle{display : inline-block; width : 25px; height : 25px;  border-radius : 20px; color : #fff; background-color : #ccc; }
+
+.mbskin .check_circle_over{background : #ff3a8f; }
+
+.mbskin .member_reco_view_box{
+    text-align : center; margin-top : 50px; 
+}
+
+.mbskin .member_reco_view_box ul li{font-size : 1.8em;}
+.mbskin .member_reco_view_box li.member_view_profile_cont{ margin-top : 20px;}
+.mbskin .member_view_table { width : 100%; margin-top : 10px;font-size : 1.2em; border : 0px; border-top : 1px solid #d9d9d9; }
+.mbskin .member_view_table th {background-color : #f6f6f6; padding : 15px 20px; border-bottom : 1px solid #d9d9d9; width : 30%;}
+.mbskin .member_view_table td {padding : 10px 20px; text-align : left;  border-bottom : 1px solid #d9d9d9; }
+.mbskin .member_reco_view_box .view_title{margin-top : 30px; font-size : 1.8em; text-align : left;}
+
+.mbskin .member_reco_view_box .mb_signature_pad:after{ display:block;visibility:hidden;clear:both;content:"" }
+.mbskin .member_reco_view_box .signature_reset_btn{ background-color : #fff; border : 1px solid #ff3a8f; color : #ff3a8f; font-size : 1.2em; width : 48%; padding : 10px 0 ; border-radius : 5px; float : left;  }
+.mbskin .member_reco_view_box .signature_save_btn{ margin-left : 4%; background-color : #ff3a8f;  border : 1px solid #ff3a8f;  color : #fff; font-size : 1.2em; width : 48%; padding : 10px 0 ; border-radius : 5px; float : left;
+}
 
 /* ### 기본 스타일 커스터마이징 끝 ### */
 /* 회원가입 약관 */
