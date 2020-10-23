@@ -32,16 +32,16 @@ if (G5_IS_MOBILE) {
 <!--                
 				전화 :  02-123-4567  팩스  : 02-123-4568<br>                
                 개인정보관리책임자 :  정보책임자명<br>
--->
+-->             Copyright &copy; <b>beautyqueen.</b> All rights reserved.   
             </p>
-                Copyright &copy; <b>beautyqueen.</b> All rights reserved.            
+                        
 	    </div>
 	</div>      
         <!-- <div id="ft_catch"><img src="<?php echo G5_IMG_URL; ?>/ft_logo.png" alt="<?php echo G5_VERSION ?>"></div> -->
     
     
-    <button type="button" id="top_btn">
-    	<i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span>
+    <button type="button" id="top_btn" style = "border : 1px solid #d9d9d9;">
+    	<i class="fa fa-arrow-up" aria-hidden="true" style = "color : #d9d9d9;"></i><span class="sound_only">상단으로</span>
     </button>
     <script>
     $(function() {

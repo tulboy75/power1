@@ -767,7 +767,7 @@ $(function() {
         return true;
     });
 
-    $(".back_btn").click(function(){
+    $(".history_back").click(function(){
        history.back();
     });
 });

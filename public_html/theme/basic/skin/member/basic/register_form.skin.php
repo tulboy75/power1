@@ -3,12 +3,25 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
-$rt = $_GET['rt'];
+$rt = $_REQUEST['rt'];
+
+if($is_member){
+    if($member['mb_level'] == "3")
+        $rt = "store";
+}
 ?>
 
 <!-- 회원정보 입력/수정 시작 { -->
 
 <div class="register">
+<div class = "mb_title"> 
+    <div class = "history_back"><i class="fa fa-chevron-left"></i></div>
+    <?php if($w =="u"){?>
+    <span class = "mb_title_cont">회원정보 수정</span>
+    <?php }else{ ?>
+    <span class = "mb_title_cont">회원가입</span>        
+    <?php  } ?>
+</div>
 
 <script src="<?php echo G5_JS_URL ?>/jquery.register_form.js"></script>
 <?php if($config['cf_cert_use'] && ($config['cf_cert_ipin'] || $config['cf_cert_hp'])) { ?>
@@ -32,11 +45,13 @@ $rt = $_GET['rt'];
 
 	<div id="register_form" class="form_01">   
 	    <div class="register_form_inner">
+            <?php if($w != "u"){?>            
             <ul class = "register_menu">
                 <li class = "register_sub_menu <?php if($rt == ""){?> over <?php } ?>"><a href = "?rt=">일반회원</a></li>
                 <li class = "register_sub_menu <?php if($rt == "store"){?> over <?php } ?>"><a href="?rt=store">가맹점회원</a></li>
             </ul>            
-	        <!-- <h2>사이트 이용정보 입력</h2> -->
+            <!-- <h2>사이트 이용정보 입력</h2> -->
+            <?php } ?>
 	        <ul>
 
             <?php if ($req_nick) {  ?>
@@ -55,7 +70,7 @@ $rt = $_GET['rt'];
             <li>
 	            <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
 	                <label for="reg_mb_hp">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
-	                
+	            <?php if($w != "u"){ ?>
 	                <input type = "text" value = "+82" class = "frm_input frm_input_5" readonly> &nbsp;<input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input frm_input_60  <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호">
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
@@ -66,7 +81,9 @@ $rt = $_GET['rt'];
                     <input type = "button" value = "확인" id = "mb_hp_code_con" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em; margin-top : 10px;">
                     <span id="msg_mb_hp" class = "error_msg"></span>
 <?php // 인증번호 코드 입력부분 끝?>                                                      
-	            <?php }  ?>
+                <?php }else{  ?>
+                     <input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input full_input <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호"  <?php echo $readonly; ?> >
+                <?php }} ?>
             </li>            
             
 	            <li style = "display : none;">
@@ -89,12 +106,13 @@ $rt = $_GET['rt'];
                 </li>
 
                 <li>
+      
                     <?php if($rt == "store"){?>
                     <label for="reg_mb_name">사장님 이름<strong class="sound_only">필수</strong></label>
                     <?php } else { ?>
                     <label for="reg_mb_name">이름<strong class="sound_only">필수</strong></label>
                     <?php } ?>
-	                <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $readonly; ?> class="frm_input full_input required <?php echo $readonly ?>" size="10" placeholder="이름">
+                    <input type="text" id="reg_mb_name" name="mb_name" value="<?php echo get_text($member['mb_name']) ?>" <?php echo $required ?> <?php echo $readonly; ?> class="frm_input full_input required <?php echo $readonly ?>" size="10" placeholder="이름">
 	                <?php
 	                if($config['cf_cert_use']) {
 	                    if($config['cf_cert_ipin'])
@@ -193,7 +211,7 @@ $rt = $_GET['rt'];
 	                <input type="text" name="mb_recommend" id="reg_mb_recommend" class="frm_input full_input" placeholder="추천인 코드를 입력해 주세요.">
 	            </li>
 	            <?php }  ?>
-
+                <?php if($w != "u"){ ?>
                 <li>
                     <br/><br/>
 	            </li>
@@ -218,7 +236,7 @@ $rt = $_GET['rt'];
                             <?php echo get_text($config['cf_privacy']) ?>
                         </textarea>
                 </li>         
-
+                <?php  } ?>
 	            <li class="is_captcha_use">
                     <label>자동등록방지</label>
 	                <?php echo captcha_html(); ?>
@@ -442,6 +460,7 @@ $(function() {
 // submit 최종 폼체크
 function fregisterform_submit(f)
 {
+    <?php if($w != "u"){ ?>
     // 동의 여부 검사
     if (!f.agree_chk.checked) {
         alert("위치기반 서비스 이용약관에 동의하셔야 회원가입 하실 수 있습니다.");
@@ -454,11 +473,13 @@ function fregisterform_submit(f)
         f.agree2.focus();
         return false;
     }
-
+    <?php } ?>
+    <?php if($w != "u"){ ?>
     // 아이디에 전화번호 넣기 
-    if(f.mb_hp.value !== "")
-        f.mb_id.value = f.mb_hp.value;
-
+    if(f.mb_hp.value !== ""){
+        f.mb_id.value = f.mb_hp.value.replace(/-/g, "");
+    }
+    <?php } ?>
 
     // 회원아이디 검사
     // if (f.w.value == "") {
@@ -542,7 +563,9 @@ function fregisterform_submit(f)
 
     <?php if (($config['cf_use_hp'] || $config['cf_cert_hp']) && $config['cf_req_hp']) {  ?>
     // 휴대폰번호 체크
+    <?php if($w != "u"){ ?>
     var msg = reg_mb_hp_check();
+    <?php  } ?>
     if (msg) {
         alert(msg);
         f.reg_mb_hp.select();
@@ -594,12 +617,12 @@ function fregisterform_submit(f)
 
 jQuery(function($){
 
-    $("input[name=mb_name").val("제이");
-    $("input[name=mb_nick").val("제이");
-    $("input[name=mb_hp").val("01012345678");
-    $("input[name=mb_hp_code").val("12345678");
-    $("input[name=mb_password").val("12345678");
-    $("input[name=mb_password_re").val("12345678");
+    // $("input[name=mb_name").val("제이");
+    // $("input[name=mb_nick").val("제이");
+    // $("input[name=mb_hp").val("01012345678");
+    // $("input[name=mb_hp_code").val("12345678");
+    // $("input[name=mb_password").val("12345678");
+    // $("input[name=mb_password_re").val("12345678");
 
 
 	//tooltip
@@ -619,6 +642,7 @@ jQuery(function($){
     });
     
     $("input[name=mb_nick_chk]").click(function(){
+
         var mb_nick_form = $("#fregisterform input[name=mb_nick]");
         $("#msg_mb_nick").text("");
     // 닉네임 검사
@@ -627,11 +651,12 @@ jQuery(function($){
         }
 
         var msg = reg_mb_nick_check();
+
         if(msg){
             $("#msg_mb_nick").text(msg);
         }else{
             alert('사용가능한 닉네임 입니다. ')
-            return true;
+            return ;
 
         }
         mb_nick_form.select();

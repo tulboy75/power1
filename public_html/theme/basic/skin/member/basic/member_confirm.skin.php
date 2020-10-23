@@ -3,24 +3,28 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
+
 ?>
 
 <!-- 회원 비밀번호 확인 시작 { -->
 <div id="mb_confirm" class="mbskin">
-    <h1><?php echo $g5['title'] ?></h1>
-
-    <p>
-        <strong>비밀번호를 한번 더 입력해주세요.</strong>
+    <div class = "mb_title"> 
+        <div class = "history_back"><i class="fa fa-chevron-left"></i></div>
+        <span class = "mb_title_cont">비밀번호 확인</span>
+    </div>
+    <div class = "mb_confirm_cont">
+        <strong>비밀번호를 한번 더 입력해주세요.</strong><br/>
         <?php if ($url == 'member_leave.php') { ?>
         비밀번호를 입력하시면 회원탈퇴가 완료됩니다.
         <?php }else{ ?>
         회원님의 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인합니다.
         <?php }  ?>
-    </p>
+        </div>
 
     <form name="fmemberconfirm" action="<?php echo $url ?>" onsubmit="return fmemberconfirm_submit(this);" method="post">
     <input type="hidden" name="mb_id" value="<?php echo $member['mb_id'] ?>">
     <input type="hidden" name="w" value="u">
+    <input type="hidden" name="rt" value="<?php echo $rt ?>">    
 
     <fieldset>
         <span class="confirm_id">회원아이디</span>

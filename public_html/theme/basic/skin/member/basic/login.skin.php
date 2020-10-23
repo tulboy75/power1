@@ -7,32 +7,46 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
 <!-- 로그인 시작 { -->
 <div id="mb_login" class="mbskin">
+    <div class = "mb_title"> 
+        <div class = "history_back"><i class="fa fa-chevron-left"></i></div>
+        <span class = "mb_title_cont">로그인</span>
+    </div>
+
     <div class="mbskin_box">
-        <h1><?php echo $g5['title'] ?></h1>
-        <div class="mb_log_cate">
-            <h2><span class="sound_only">회원</span>로그인</h2>
-            <a href="<?php echo G5_BBS_URL ?>/register.php" class="join">회원가입</a>
-        </div>
+
+        <ul class = "register_menu">
+                <li class = "register_sub_menu <?php if($rt == ""){?> over <?php } ?>"><a href = "?rt=">일반회원</a></li>
+                <li class = "register_sub_menu <?php if($rt == "store"){?> over <?php } ?>"><a href="?rt=store">가맹점회원</a></li>
+        </ul>       
+
         <form name="flogin" action="<?php echo $login_action_url ?>" onsubmit="return flogin_submit(this);" method="post">
         <input type="hidden" name="url" value="<?php echo $login_url ?>">
         
         <fieldset id="login_fs">
             <legend>회원로그인</legend>
             <label for="login_id" class="sound_only">회원아이디<strong class="sound_only"> 필수</strong></label>
-            <input type="text" name="mb_id" id="login_id" required class="frm_input required" size="20" maxLength="20" placeholder="아이디">
-            <label for="login_pw" class="sound_only">비밀번호<strong class="sound_only"> 필수</strong></label>
-            <input type="password" name="mb_password" id="login_pw" required class="frm_input required" size="20" maxLength="20" placeholder="비밀번호">
-            <button type="submit" class="btn_submit">로그인</button>
-            
+            <input type = "text" value = "+82" class = "frm_input frm_input_5" readonly> <input type="text" name="mb_id" id="login_id" required class="frm_input frm_input_90 required" size="20" maxLength="20" placeholder="휴대폰번호를 입력해 주세요.">
+            <label for="login_pw" class="sound_only">비밀번호를 입력해 주세요.<strong class="sound_only"> 필수</strong></label>
+            <input type="password" name="mb_password" id="login_pw" required class="frm_input required" size="20" maxLength="20" placeholder="비밀번호를 입력해 주세요">
+           
             <div id="login_info">
                 <div class="login_if_auto chk_box">
                     <input type="checkbox" name="auto_login" id="login_auto_login" class="selec_chk">
-                    <label for="login_auto_login"><span></span> 자동로그인</label>  
+                    <label for="login_auto_login"> 자동로그인</label>  
                 </div>
+                <!-- 
                 <div class="login_if_lpl">
                     <a href="<?php echo G5_BBS_URL ?>/password_lost.php" target="_blank" id="login_password_lost">정보찾기</a>  
                 </div>
+                -->
             </div>
+            <br/><br/>
+            <button type="submit" class="btn_submit">로그인</button>
+            <ul class = "member_link">
+                <li><a href="<?php echo G5_BBS_URL?>/password_lost_hp.php">비밀번호변경</a></li>
+                <li><a href="<?php echo G5_BBS_URL?>/register_form.php">회원가입</a></li>
+                <li><a href="<?php echo G5_BBS_URL?>/register_form.php?rt=store">가맹점 회원가입</a></li>
+            </ul>
         </fieldset> 
         </form>
         <?php @include_once(get_social_skin_path().'/social_login.skin.php'); // 소셜로그인 사용시 소셜로그인 버튼 ?>

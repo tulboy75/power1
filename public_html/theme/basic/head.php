@@ -45,8 +45,13 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
             </div>
             <div>
             <ul class="gnb_member_menu">
+                <?php if($is_member){ ?>
+                <li class="gnb_member"><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php">정보수정</a></li>
+                <li class="gnb_member over"><a href="<?php echo G5_BBS_URL?>/logout.php">로그아웃</a></li>
+                <?php }else{ ?>
                 <li class="gnb_member"><a href="<?php echo G5_BBS_URL?>/login.php">로그인</a></li>
-                <li class="gnb_member over"><a href="<?php echo G5_BBS_URL?>/register_form.php">회원가입</a></li>
+                <li class="gnb_member over"><a href="<?php echo G5_BBS_URL?>/register_form.php">회원가입</a></li>                
+                <?php } ?>
             </ul>
             <hr style = "width: 90%; display : inline-block; border-top : 1px solid #d9d9d9; margin-top : 20px;">
             </div>
@@ -75,10 +80,5 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
     <div id="container_wr">
    
     <div id="container">
-        <?php if (!defined("_INDEX_")) { ?>
-            <div id="container_title">
-                <span class = "back_btn"> < </span>
-                <span title="<?php echo get_text($g5['title']); ?>"><?php echo get_head_title($g5['title']); ?></span>
-            </div>
-        <?php } ?>
+
         
