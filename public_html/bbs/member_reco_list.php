@@ -35,7 +35,7 @@ $i = 0;
 while($row = sql_fetch_array($result)){
 
     $row['mb_addr'] = $row['mb_addr1'] . " " . $row['mb_addr2'] . " " . $row['mb_addr3'] ;
-    $row['mb_addr'] = cut_str($row['mb_addr'], 20);
+    $row['mb_addr'] = cut_str($row['mb_addr'], 12);
     $member_list[$i] = $row;
     $i++;
 }

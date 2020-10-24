@@ -22,7 +22,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <fieldset id="login_fs">
             <legend>회원로그인</legend>
             <label for="member_hp" class="sound_only">회원휴대폰 번호<strong class="sound_only"> 필수</strong></label>
-            <input type = "text" value = "+82" class = "frm_input frm_input_5" readonly> <input type="text" name="mb_hp" id="mb_hp" required class="frm_input frm_input_60 required" size="20" maxLength="20" placeholder="휴대폰번호를 입력해 주세요." style = "margin-left : 1%;">
+            <input type = "text" value = "+82" class = "frm_input frm_input_5" style = "width : 17%;" readonly> <input type="text" name="mb_hp" id="mb_hp" required class="frm_input frm_input_60 required" style = "width : 53%;" size="20" maxLength="20" placeholder="휴대폰번호를 입력해 주세요." style = "margin-left : 1%;">
             <input type = "button" id = "mb_hp_code_req" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em" value = "인증번호요청">
 
             <label for="member_hp_code" class="sound_only">인증번호를 입력해 주세요.<strong class="sound_only"> 필수</strong></label>

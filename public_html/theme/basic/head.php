@@ -69,7 +69,7 @@ include_once(G5_LIB_PATH.'/popular.lib.php');
 
                 </li>
                 <li class="menu-label"><a href="<?php echo G5_BBS_URL?>/member_reco_list.php?rt=store"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon01.png"> <span class = 'gnb_menu_list_title'>&nbsp;가맹점가입리스트</span></a></li>                
-                <li class="menu-label"><a href="#"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon04.png"> <span class = 'gnb_menu_list_title'>&nbsp;회원정보수정</span></a></li>
+                <li class="menu-label"><a href="<?php echo G5_BBS_URL ?>/member_confirm.php?url=<?php echo G5_BBS_URL ?>/register_form.php"><img src = "<?php echo G5_THEME_IMG_URL ?>/menu_list_icon04.png"> <span class = 'gnb_menu_list_title'>&nbsp;회원정보수정</span></a></li>
             </ul>
         </div>
     </div>

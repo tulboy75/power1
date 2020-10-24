@@ -25,7 +25,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <fieldset id="login_fs">
             <legend>회원로그인</legend>
             <label for="login_id" class="sound_only">회원아이디<strong class="sound_only"> 필수</strong></label>
-            <input type = "text" value = "+82" class = "frm_input frm_input_5" readonly> <input type="text" name="mb_id" id="login_id" required class="frm_input frm_input_90 required" size="20" maxLength="20" placeholder="휴대폰번호를 입력해 주세요.">
+            <input type = "text" value = "+82" class = "frm_input frm_input_5" style = "width : 20%" readonly> <input type="text" name="mb_id" id="login_id" required class="frm_input frm_input_90" style = "width : 78%;" required size="20" maxLength="20" placeholder="휴대폰번호를 입력해 주세요.">
             <label for="login_pw" class="sound_only">비밀번호를 입력해 주세요.<strong class="sound_only"> 필수</strong></label>
             <input type="password" name="mb_password" id="login_pw" required class="frm_input required" size="20" maxLength="20" placeholder="비밀번호를 입력해 주세요">
            
@@ -44,8 +44,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
             <button type="submit" class="btn_submit">로그인</button>
             <ul class = "member_link">
                 <li><a href="<?php echo G5_BBS_URL?>/password_lost_hp.php">비밀번호변경</a></li>
-                <li><a href="<?php echo G5_BBS_URL?>/register_form.php">회원가입</a></li>
-                <li><a href="<?php echo G5_BBS_URL?>/register_form.php?rt=store">가맹점 회원가입</a></li>
+                <li style = "width : 27%"><a href="<?php echo G5_BBS_URL?>/register_form.php">회원가입</a></li>
+                <li style = "width : 39%"><a href="<?php echo G5_BBS_URL?>/register_form.php?rt=store">가맹점회원가입</a></li>
             </ul>
         </fieldset> 
         </form>

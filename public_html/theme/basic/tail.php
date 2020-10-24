@@ -20,7 +20,7 @@ if (G5_IS_MOBILE) {
 
     <div id="ft_wr">
         <div class = "ft_company_info">
-            회사소개  ㅣ  위치기반 서비스 이용약관  ㅣ  개인정보 수집 및 이용  ㅣ 사업자 정보확인 | 가맹점 로그인  ㅣ  가맹점 회원가입
+            회사소개  ㅣ  위치기반서비스이용약관  ㅣ  개인정보수집및이용  ㅣ 사업자정보확인 | 가맹점로그인  ㅣ  가맹점회원가입
         </div>
         <div id="ft_company" class="ft_cnt">
         	<h2>뷰티퀸</h2>

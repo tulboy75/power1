@@ -122,7 +122,7 @@
     margin-top : 20px; width : 90%;
 }
 .mbskin .member_link li{
-    float : left;     width : 33%;    font-size : 1.6em;    border-right : 1px solid #000;    text-align : center; 
+    float : left;     width : 33%;    font-size : 1.2em;    border-right : 1px solid #000;    text-align : center; 
 }
 .mbskin .member_link li:last-child{
     border : 0px;
@@ -148,7 +148,7 @@
 .mbskin .search_field .search_icon {}
 .mbskin .search_field .mb_list_submit_btn{ position : absolute; top : 30px; right : 40px; border : 0px; background : none; }
 .mbskin .search_field .mb_list_submit_btn i{color : #999;}
-.mbskin .member_list_table { width : 100%; margin-top : 20px; margin-bottom : 50px; font-size : 1.2em;}
+.mbskin .member_list_table { width : 95%; margin : 0 auto; margin-top : 20px; margin-bottom : 50px; font-size : 1.2em;}
 .mbskin .member_list_table th{ padding : 10px 0px ; border-bottom  : 3px solid #f6f6f6 ; border-top : 3px solid #f6f6f6; }
 .mbskin .member_list_table td{ padding : 10px 0px ; border-bottom  : 1px solid #f6f6f6 ; text-align : center;}
 
@@ -175,7 +175,7 @@
 .mbskin .member_reco_view_box .signature_save_btn{ margin-left : 4%; background-color : #ff3a8f;  border : 1px solid #ff3a8f;  color : #fff; font-size : 1.2em; width : 48%; padding : 10px 0 ; border-radius : 5px; float : left;
 }
 
-.mbskin .point_send_form_box{ margin-top : 20px; }
+.mbskin .point_send_form_box{ width : 90%; margin : 0 auto; margin-top : 20px; }
 .mbskin .point_send_form_box table th{font-size : 1.3em; padding : 20px 0; text-align : left; }
 
 /* ### 기본 스타일 커스터마이징 끝 ### */
