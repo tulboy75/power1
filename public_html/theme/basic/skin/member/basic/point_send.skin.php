@@ -53,6 +53,94 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 </div>
 <script>
 jQuery(function($){
+    $("#mb_send_nick").click(function(){
+        if( $(this).val() == "")
+            alert("상대방 닉넴임을 검색해 주세요.");
+        return ;
+    });
 
+    $("#mb_search_nick_form").submit(function(){
+        var resutlt = "";
+        $("#msg_search_nick").text("");
+        if($("#mb_search_nick").val() == ""){
+            $("#msg_search_nick").text("검색할 닉네임을 입력해 주세요.");
+        }else{
+            result = search_member_nick();
+            if(result){
+                $("#msg_search_nick").text(result);
+            }else{
+                $("#mb_send_nick").val($("#mb_search_nick").val());
+                alert("전송 가능한 닉네임 입니다.")
+            }
+        }
+        return false;
+    });
+
+    $("#member_point_send_form").submit(function(){
+        var resutlt = "";
+        var mb_nick = $("#mb_send_nick").val();
+        var mb_point = $("#mb_send_point").val();
+
+        if(mb_nick == ""){
+            alert("닉네임을 입력해 검색해 주세요");
+            return false;
+        }
+
+        if(mb_point == ""){
+            alert("전송할 포인트를 입력해 주세요.");
+            return false;
+        }
+
+        result = point_send();
+
+        if(result == ""){
+            alert("코인을 전송하였습니다.");
+            $("#mb_send_nick").val("");
+            $("#mb_send_point").val("");
+            $("#mb_search_nick").val("");
+            return false; 
+        }
+        alert("코인전송에 실패 하였습니다. 다시 시도해 주세요.")
+
+
+        return false;
+    });
+
+});
+
+
+var search_member_nick = function(){
+    var result = "";    
+    $.ajax({
+        type: "POST",
+        url: g5_bbs_url+"/ajax.mb_nick_confirm.php",
+        data: {
+            "mb_nick" : $("#mb_search_nick").val()
+        },
+        cache: false,
+        async: false,
+        success: function(data) {
+            result = data;
+        }
+    });
+    return result;
+}
+
+var point_send = function(){
+    var result = "";    
+    $.ajax({
+        type: "POST",
+        url: g5_bbs_url+"/ajax.mb_point_send.php",
+        data: {
+            "mb_nick" : $("#mb_send_nick").val(),
+            "mb_point" : $("#mb_send_point").val()
+        },
+        cache: false,
+        async: false,
+        success: function(data) {
+            result = data;
+        }
+    });
+    return result;
 }
 </script>
