@@ -4,21 +4,31 @@ include_once('./_common.php');
 if ($is_guest)
     alert_close('회원만 조회하실 수 있습니다.');
 
-$g5['title'] = "코인전송";
+$g5['title'] = "코인전송 내역";
 
 //닉네임을 통해서 코인 전송
 
+$member_id  = $member['mb_id'];
+$search_nick = escape_trim($mb_search_nick);
 
+// po_rel_id = 현재 멤버 아이디
+// 검색 닉네임은 받읏 사람 닉네임
 
-if($s_id != ""){
-    $qstr .= "&mb_search_nick=".$s_nick;
-    $sql_common = " from {$g5['point_table']} where mb_id = '".escape_trim($member['mb_id'])."' AND po_rel_id = '". $s_id . "' ";
+if($search_nick != ""){
+    $sql = "select mb_id from " . $g5['member_table'] . " where mb_nick = '" . $search_nick . "'";
+    $row = sql_fetch($sql);
+    $search_mb_id = $row['mb_id'];
+}
+
+if($search_ncik != ""){
+    $qstr .= "&mb_search_nick=".$search_nick;
+      $sql_common = " from {$g5['point_table']} where mb_id = '" . $search_mb_id . "' AND po_rel_id = '". $member_id . "' ";
 }else{
-    $sql_common = " from {$g5['point_table']} where mb_id = '".escape_trim($member['mb_id'])."' ";
+    $sql_common = " from {$g5['point_table']} where po_rel_id = '" . $member['mb_id'] . "' ";
 }
 
 
-$sql_order = " order by po_id desc ";
+$sql_order = " order by po_datetime desc ";
 
 $sql = " select count(*) as cnt {$sql_common} ";
 $row = sql_fetch($sql);
@@ -40,16 +50,19 @@ $sql = " select *
 limit {$from_record}, {$rows} ";
 
 $result = sql_query($sql);
+
 for ($i=0; $row=sql_fetch_array($result); $i++) {
     $po_list[$i] = $row;
-    $sql = "select mb_nick from " . $g5['member_table'] . " where mb_id = '" . $row['po_rel_id'] . "'";
+    $sql = "select mb_nick from " . $g5['member_table'] . " where mb_id = '" . $row['mb_id'] . "'";
     $mb_row = sql_fetch($sql);
     $po_list[$i]['mb_nick'] = $mb_row['mb_nick'];
 }
 
+
+
 include_once('./_head.sub.php');
 
-include_once($member_skin_path.'/point_send.skin.php');
+include_once($member_skin_path.'/point_send_list.skin.php');
 
 include_once('./_tail.sub.php');
 ?>

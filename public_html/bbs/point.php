@@ -23,7 +23,7 @@ if($s_id != ""){
 }
 
 
-$sql_order = " order by po_id desc ";
+$sql_order = " order by po_datetime desc ";
 
 $sql = " select count(*) as cnt {$sql_common} ";
 $row = sql_fetch($sql);
