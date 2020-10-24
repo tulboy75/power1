@@ -2,7 +2,7 @@
 include_once('./_common.php');
 
 if ($is_guest)
-    alert_close('회원만 조회하실 수 있습니다.');
+    alert('로그인 한 회원만 접근하실 수 있습니다.', G5_BBS_URL.'/login.php');
 
 $g5['title'] = "코인전송";
 
