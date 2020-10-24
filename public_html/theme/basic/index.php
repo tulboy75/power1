@@ -8,6 +8,12 @@ if (G5_IS_MOBILE) {
 }
 
 include_once(G5_THEME_PATH.'/head.php');
+
+// 추천인 코드 세션 저장
+if($_GET['reco']){
+    set_session("reco", escape_trim($_GET['reco']));
+}
+
 ?>
 
 <?php //echo outlogin('theme/basic'); // 외부 로그인, 테마의 스킨을 사용하려면 스킨을 theme/basic 과 같이 지정 ?>

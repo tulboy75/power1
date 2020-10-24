@@ -9,6 +9,8 @@ if($is_member){
     if($member['mb_level'] == "3")
         $rt = "store";
 }
+$reco = get_session("reco");
+
 ?>
 
 <!-- 회원정보 입력/수정 시작 { -->
@@ -71,7 +73,7 @@ if($is_member){
 	            <?php if ($config['cf_use_hp'] || $config['cf_cert_hp']) {  ?>
 	                <label for="reg_mb_hp">휴대폰번호<?php if ($config['cf_req_hp']) { ?><strong class="sound_only">필수</strong><?php } ?></label>
 	            <?php if($w != "u"){ ?>
-	                <input type = "text" value = "+82" class = "frm_input frm_input_5" readonly> &nbsp;<input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input frm_input_60  <?php echo ($config['cf_req_hp'])?"required":""; ?>" maxlength="20" placeholder="휴대폰번호">
+	                <input type = "text" value = "+82" class = "frm_input frm_input_5" style = "width : 17%; " readonly> &nbsp;<input type="text" name="mb_hp" value="<?php echo get_text($member['mb_hp']) ?>" id="reg_mb_hp" <?php echo ($config['cf_req_hp'])?"required":""; ?> class="frm_input frm_input_60  <?php echo ($config['cf_req_hp'])?"required":""; ?>" style = "width : 50%" maxlength="20" placeholder="휴대폰번호">
 	                <?php if ($config['cf_cert_use'] && $config['cf_cert_hp']) { ?>
 	                <input type="hidden" name="old_mb_hp" value="<?php echo get_text($member['mb_hp']) ?>">
                     <?php } ?>
@@ -408,7 +410,10 @@ gif, jpg, png파일만 가능하며 용량 <?php echo number_format($config['cf_
 </div>
 <script>
 $(function() {
-    
+    var reco = "<?php echo $reco ?>";
+    if(reco != ""){
+        $("#reg_mb_recommend").val(reco).prop("readonly", true);
+    }
 
     $("#reg_zip_find").css("display", "inline-block");
 
