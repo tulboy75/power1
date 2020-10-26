@@ -3,6 +3,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
+$rt = escape_trim($_REQUEST['rt']);
 ?>
 
 <!-- 로그인 시작 { -->
@@ -18,6 +19,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <input type="hidden" name="url" value="<?php echo $login_url ?>">
         <input type="hidden" name="token" id = "mb_token" value="<?php echo $token ?>">
         <input type = "hidden" name = "mb_hp" value = "<?php echo $member_hp ?>">
+        <input type = "hidden" name = "rt" value = "<?php echo $rt ?>">
     
         
         <fieldset id="login_fs">
@@ -61,9 +63,6 @@ function fpassword_check2_submit(f)
         f.mb_password_re.focus();
         return false;
     }
-
-
-    
 }
 
 jQuery(function($){

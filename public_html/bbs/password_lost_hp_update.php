@@ -6,24 +6,28 @@ if ($is_member) {
     alert("이미 로그인중입니다.");
 }
 
-
 $g5['title'] = '비밀번호 변경';
 include_once(G5_PATH.'/head.sub.php');
 
-$member_id = $_POST['mb_hp'];
-$member_id = addslashes($member_id);
+$rt = $_POST['rt'];
+$mb_hp = hyphen_hp_number($_POST['mb_hp']);
+$mb_level = ($rt == "store") ? "3" : "2";
 
-if(!get_member($member_id)){
-    alert('회원정보가 존재 하지 않습니다.');
- }
+$sql = "select count(*) as cnt, mb_no from " . $g5['member_table'] . " where mb_hp = '" . $mb_hp . "' AND mb_level = '" . $mb_level . "'";
 
+$row = sql_fetch($sql);
 
-$member_password = str_replace("-", "", trim($_POST['mb_password']));
-$member_password_re = str_replace("-", "",trim($_POST['mb_password_re']));
+if($row['cnt'] != "1"){
+    alert("회원정보가 존재하지 않습니다.");
+}
 
-$member_password = addslashes($member_passowrd);
+$mb_no = $row['mb_no'];
 
-$sql = "update {$g5['member_table']} set mb_password = '" . get_encrypt_string($mb_password) . "'" . " where mb_id = '" . $member_id . "'";
+$mb_password = trim($_POST['mb_password']);
+$mb_password_re = trim($_POST['mb_password_re']);
+
+$sql = "update {$g5['member_table']} set mb_password = '" . get_encrypt_string($mb_password) . "'" . " where mb_no = '" . $mb_no . "'";
+
 
 $result = sql_query($sql);
 if(!$result){

@@ -3249,8 +3249,9 @@ function login_password_check($mb, $pass, $hash)
 
     $mb_id = isset($mb['mb_id']) ? $mb['mb_id'] : '';
 
-    if(!$mb_id)
+    if(!$mb_id){
         return false;
+    }
 
     if(G5_STRING_ENCRYPT_FUNCTION === 'create_hash' && (strlen($hash) === G5_MYSQL_PASSWORD_LENGTH || strlen($hash) === 16)) {
         if( sql_password($pass) === $hash ){
@@ -3266,7 +3267,6 @@ function login_password_check($mb, $pass, $hash)
             return true;
         }
     }
-
     return check_password($pass, $hash);
 }
 

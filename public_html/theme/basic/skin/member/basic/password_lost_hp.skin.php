@@ -3,6 +3,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
+$rt = escape_trim($_REQUEST['rt']);
 ?>
 
 <!-- 로그인 시작 { -->
@@ -13,14 +14,19 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     </div>
 
     <div class="mbskin_box">
-
+    <ul class = "register_menu">
+                <li class = "register_sub_menu <?php if($rt == ""){?> over <?php } ?>"><a href = "?rt=">일반회원</a></li>
+                <li class = "register_sub_menu <?php if($rt == "store"){?> over <?php } ?>"><a href="?rt=store">가맹점회원</a></li>
+        </ul>   
         <form name="member_hp_check" action="<?php echo $action_url ?>" onsubmit="return fpassword_check_submit(this);" method="post">
         <input type="hidden" name="url" value="<?php echo $login_url ?>">
         <input type="hidden" name="token" id = "mb_token" value="<?php echo $token ?>">
-        <input type = "hidden" name = "mb_hp_code_confirm" value = "0">         
+        <input type = "hidden" name = "mb_hp_code_confirm" value = "0">
+        <input type = "hidden" name = "rt" id = "rt" value = "<?php echo $rt?>">
         
         <fieldset id="login_fs">
-            <legend>회원로그인</legend>
+              
+            <legend>비밀번호 변경</legend>
             <label for="member_hp" class="sound_only">회원휴대폰 번호<strong class="sound_only"> 필수</strong></label>
             <input type = "text" value = "+82" class = "frm_input frm_input_5" style = "width : 17%;" readonly> <input type="text" name="mb_hp" id="mb_hp" required class="frm_input frm_input_60 required" style = "width : 53%;" size="20" maxLength="20" placeholder="휴대폰번호를 입력해 주세요." style = "margin-left : 1%;">
             <input type = "button" id = "mb_hp_code_req" class = "frm_input_20 frm_btn_confirm" style = "font-size : 1.2em" value = "인증번호요청">
@@ -46,6 +52,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 </div>
 
 <script>
+
 function fpassword_check_submit(f)
 {
     if(f.mb_hp_code_confirm.value != "1"){
@@ -118,7 +125,12 @@ jQuery(function($){
 // 인증코드 발송
 var reg_mb_hp_code_send = function() {
 
-var result = "";
+    var result = "";
+    var mb_level = "";
+    if($("#rt").val() == "store")
+        mb_level = "3";
+    else 
+        mb_level = "2";
 
 $.ajax({
     type: "POST",
@@ -127,6 +139,7 @@ $.ajax({
         "reg_mb_type" : "password_check",
         "reg_mb_hp": $("#mb_hp").val(),
         "reg_mb_id": "",
+        "reg_mb_level" : mb_level,
         "reg_mb_token" : $("#mb_token").val()
     },
     cache: false,
