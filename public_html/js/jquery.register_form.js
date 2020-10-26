@@ -75,12 +75,19 @@ var reg_mb_email_check = function() {
 
 var reg_mb_hp_check = function() {
     var result = "";
+    var mb_level = "";
+    if($("#rt").val() == "store")
+        mb_level = "3";
+    else 
+        mb_level = "2";
+
     $.ajax({
         type: "POST",
         url: g5_bbs_url+"/ajax.mb_hp.php",
         data: {
             "reg_mb_hp": $("#reg_mb_hp").val(),
-            "reg_mb_id": encodeURIComponent($("#reg_mb_id").val())
+            "reg_mb_id": encodeURIComponent($("#reg_mb_id").val()),
+            "reg_mb_level"   : mb_level
         },
         cache: false,
         async: false,
@@ -93,14 +100,19 @@ var reg_mb_hp_check = function() {
 
 // 인증코드 발송
 var reg_mb_hp_code_send = function() {
-
     var result = "";
+    var mb_level = "";
+    if($("#rt").val() == "store")
+        mb_level = "3";
+    else 
+        mb_level = "2";
     $.ajax({
         type: "POST",
         url: g5_bbs_url+"/ajax.mb_hp_code.php",
         data: {
             "reg_mb_hp": $("#reg_mb_hp").val(),
             "reg_mb_id": encodeURIComponent($("#reg_mb_id").val()),
+            "reg_mb_level" : mb_level,
             "reg_mb_token" : $("#reg_mb_token").val()
         },
         cache: false,

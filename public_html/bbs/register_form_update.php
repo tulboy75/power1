@@ -31,6 +31,7 @@ else
 if(!$mb_id)
     alert('회원아이디 값이 없습니다. 올바른 방법으로 이용해 주십시오.');
 
+
 $mb_password    = trim($_POST['mb_password']);
 $mb_password_re = trim($_POST['mb_password_re']);
 $mb_name        = trim($_POST['mb_name']);
@@ -73,6 +74,8 @@ $mb_addr1       = clean_xss_tags($mb_addr1);
 $mb_addr2       = clean_xss_tags($mb_addr2);
 $mb_addr3       = clean_xss_tags($mb_addr3);
 $mb_addr_jibeon = preg_match("/^(N|R)$/", $mb_addr_jibeon) ? $mb_addr_jibeon : '';
+
+$rt   = isset($_POST['rt'])     ? trim($_POST['rt'])   : "";
 
 run_event('register_form_update_before', $mb_id, $w);
 
@@ -135,13 +138,13 @@ if ($w == '' || $w == 'u') {
         }
 
         if ($config['cf_use_recommend'] && $mb_recommend) {
-            if (!exist_mb_id($mb_recommend))
-                alert("추천인이 존재하지 않습니다.");
+            if ($msg = exist_mb_recommend($mb_recommend) != "")
+                alert($msg);
         }
 
-        if (strtolower($mb_id) == strtolower($mb_recommend)) {
-            alert('본인을 추천할 수 없습니다.');
-        }
+        // if (strtolower($mb_id) == strtolower($mb_recommend)) {
+        //     alert('본인을 추천할 수 없습니다.');
+        // }
     } else {
         // 자바스크립트로 정보변경이 가능한 버그 수정
         // 닉네임수정일이 지나지 않았다면
@@ -164,6 +167,7 @@ if ($w == '' || $w == 'u') {
 //  본인확인
 //---------------------------------------------------------------
 $mb_hp = hyphen_hp_number($mb_hp);
+
 if($config['cf_cert_use'] && $_SESSION['ss_cert_type'] && $_SESSION['ss_cert_dupinfo']) {
     // 중복체크
     $sql = " select mb_id from {$g5['member_table']} where mb_id <> '{$member['mb_id']}' and mb_dupinfo = '{$_SESSION['ss_cert_dupinfo']}' ";
@@ -245,7 +249,7 @@ if ($w == '') {
                      mb_10 = '{$mb_10}'
                      {$sql_certify} ";
 
-    // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
+                     // 이메일 인증을 사용하지 않는다면 이메일 인증시간을 바로 넣는다
     if (!$config['cf_use_email_certify'])
         $sql .= " , mb_email_certify = '".G5_TIME_YMDHIS."' ";
     sql_query($sql);
@@ -521,6 +525,9 @@ if ($msg)
     echo '<script>alert(\''.$msg.'\');</script>';
 
 run_event('register_form_update_after', $mb_id, $w);
+
+run_event('register_form_update_after2', $mb_id, $w, $rt);
+
 
 if ($w == '') {
     goto_url(G5_HTTP_BBS_URL.'/register_result.php');

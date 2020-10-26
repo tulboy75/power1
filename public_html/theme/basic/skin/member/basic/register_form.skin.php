@@ -38,7 +38,10 @@ $reco = get_session("reco");
 	<input type="hidden" name="agree2" value="<?php echo $agree2 ?>">
 	<input type="hidden" name="token" id = "reg_mb_token" value="<?php echo $token ?>">    
 	<input type="hidden" name="cert_type" value="<?php echo $member['mb_certify']; ?>">
-	<input type="hidden" name="cert_no" value="">
+    <input type="hidden" name="cert_no" value="">
+    <input type="hidden" name="mb_10" value="<?php echo $member['mb_10']?>">
+    <input type="hidden" name="rt" id = "rt" value="<?php echo $rt?>">    
+    
 	<?php if (isset($member['mb_sex'])) {  ?><input type="hidden" name="mb_sex" value="<?php echo $member['mb_sex'] ?>"><?php }  ?>
 	<?php if (isset($member['mb_nick_date']) && $member['mb_nick_date'] > date("Y-m-d", G5_SERVER_TIME - ($config['cf_nick_modify'] * 86400))) { // 닉네임수정일이 지나지 않았다면  ?>
 	<input type="hidden" name="mb_nick_default" value="<?php echo get_text($member['mb_nick']) ?>">
@@ -465,6 +468,7 @@ $(function() {
 // submit 최종 폼체크
 function fregisterform_submit(f)
 {
+    var rt = "<?php echo $rt ?>";
     <?php if($w != "u"){ ?>
     // 동의 여부 검사
     if (!f.agree_chk.checked) {
@@ -482,7 +486,10 @@ function fregisterform_submit(f)
     <?php if($w != "u"){ ?>
     // 아이디에 전화번호 넣기 
     if(f.mb_hp.value !== ""){
-        f.mb_id.value = f.mb_hp.value.replace(/-/g, "");
+        if(rt == "store")
+            f.mb_id.value = "3" + f.mb_hp.value.replace(/-/g, "");
+        else
+            f.mb_id.value = "2" + f.mb_hp.value.replace(/-/g, "");
     }
     <?php } ?>
 
@@ -570,12 +577,12 @@ function fregisterform_submit(f)
     // 휴대폰번호 체크
     <?php if($w != "u"){ ?>
     var msg = reg_mb_hp_check();
-    <?php  } ?>
     if (msg) {
         alert(msg);
         f.reg_mb_hp.select();
         return false;
     }
+    <?php  } ?>
     <?php } ?>
 
     if (typeof f.mb_icon != "undefined") {

@@ -164,7 +164,7 @@ function valid_mb_hp($reg_mb_hp)
     }
 }
 
-function exist_mb_hp($reg_mb_hp, $reg_mb_id)
+function exist_mb_hp($reg_mb_hp, $reg_mb_id, $reg_mb_level = "")
 {
     global $g5;
 
@@ -172,7 +172,8 @@ function exist_mb_hp($reg_mb_hp, $reg_mb_id)
 
     $reg_mb_hp = hyphen_hp_number($reg_mb_hp);
 
-    $sql = "select count(*) as cnt from {$g5['member_table']} where mb_hp = '$reg_mb_hp' and mb_id <> '$reg_mb_id' ";
+    $sql = "select count(*) as cnt from {$g5['member_table']} where mb_hp = '$reg_mb_hp' and mb_level = '$reg_mb_level' ";
+
     $row = sql_fetch($sql);
 
     if($row['cnt'])
@@ -180,6 +181,7 @@ function exist_mb_hp($reg_mb_hp, $reg_mb_id)
     else
         return "";
 }
+
 
 
 function send_mb_hp($reg_mb_hp, $phone, $ss_token, $apiKey, $apiSecret)
@@ -227,11 +229,27 @@ function send_mb_hp($reg_mb_hp, $phone, $ss_token, $apiKey, $apiSecret)
 
     $result = curl_exec($ch);
     $retArr = json_decode($result); // 결과배열
-    
+
     if($retArr->statusCode == '2000')
 	    return "";
     else
         return "인증번호 발송에 실패 했습니다. 다시 요청해 주세요.";
         
+}
+
+// 추천인 존재여부
+function exist_mb_recommend($reg_mb_recommend)
+{
+    global $g5;
+
+    $reg_mb_id = trim($reg_mb_id);
+    if ($reg_mb_recommend == "") return "";
+
+    $sql = " select count(*) as cnt from `{$g5['member_table']}` where mb_10 = '$reg_mb_recommend' ";
+    $row = sql_fetch($sql);
+    if ($row['cnt'])
+        return "";
+    else
+        return "존재하지 않는 추천인 입니다.";
 }
 ?>
