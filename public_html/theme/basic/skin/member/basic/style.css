@@ -128,6 +128,14 @@
     border : 0px;
 }
 
+.mbskin  .view_title{margin-top : 30px; font-size : 1.4em; text-align : left;}
+.mbskin .file_upload_list{}
+.mbskin .file_upload_list:after {display:block;visibility:hidden;clear:both;content:""}
+.mbskin .file_upload_list li{
+    float : left;     width : 30%;  height : 73px;  margin-right : 3%; margin-top: 20px;   text-align : center;    border : 1px solid #999; color : #999; font-size : 4em; cursor : pointer;  overflow : hidden;
+}
+
+.mbskin textarea {display:block;padding:20px;width:100%;height:150px;background:#fff;border:1px solid #999;line-height:1.6em}
 .mbskin .frm_input_90 { width : 87.3%; height : 50px; }
 .mbskin .frm_input_75 { width : 70%; }
 .mbskin .frm_input_60 { width : 57%; }

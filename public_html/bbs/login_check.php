@@ -2,11 +2,12 @@
 include_once('./_common.php');
 
 $g5['title'] = "로그인 검사";
-
-if($_POST['rt'] == "store")
-    $mb_id = "3" . trim($_POST['mb_id']);    
-else
-    $mb_id = "2" . trim($_POST['mb_id']);
+if($_POST['mb_id'] != "admin"){
+    if($_POST['rt'] == "store")
+        $mb_id = "3" . trim($_POST['mb_id']);    
+    else
+        $mb_id = "2" . trim($_POST['mb_id']);
+}
 
 $mb_password = trim($_POST['mb_password']);
 
