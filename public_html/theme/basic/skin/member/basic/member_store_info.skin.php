@@ -13,19 +13,27 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
         <span class = "mb_title_cont"><?php echo $g5['title'] ?></span>
     </div>
     <div class = "member_reco_view_box">
-        <form name = "store_info" method = "post" enctype="multipart/form-data">
+        <form name = "store_info" action = "<?php echo G5_BBS_URL ?>/member_store_info.php" method = "POST" enctype="multipart/form-data">
         <input type = "file" name = "store_pic[]" id = "store_pic" multiple style = "display : none;">
+        <input type = "hidden" name = "m_info_update" value = "1">
         <div class = "view_title"> 사진등록</div>
         <ul class = "file_upload_list" id = "file_upload_list">
             <li id = "add_file" style = "line-height : 70px;"><i class="fa fa-plus"></i></li>
         </ul>
+        <ul class = "store_img_box">
+        <?php foreach($mb_6 as $key => $val){ ?>
+            <li>
+                <img src = "<?php echo $val?>">
+            </li>
+            <?php } ?>                         
+        </ul>       
         <div class = "view_title"> 영업시간</div> 
         <div style = "text-align : left;">       
-        <input type = "text" name = "mb_4_1" class = "frm_input" style = "width : 40%;"> ~ <input type = "text" name = "mb_4_2" class = "frm_input" style = "width : 40%"> 
+        <input type = "text" name = "mb_4_1" class = "frm_input" style = "width : 40%;text-align : center;" value = "<?php echo $mb_4[0]?>"> <span style = "font-size : 2em;">~</span> <input type = "text" name = "mb_4_2" value = "<?php echo $mb_4[1]?>" class = "frm_input" style = "width : 40%; text-align : center;"> 
         </div>
 
         <div class = "view_title"> 내용</div>   
-        <textarea name = "mb_5"></textarea>
+        <textarea name = "mb_5"><?php echo $mb_5 ?></textarea>
         <br/>
         <input type="submit" value="확인" id="btn_submit" class="btn_submit"> 
         <br/><br/><br/><br/><br/><br/>
@@ -81,12 +89,5 @@ function handleImgFileSelect(e) {
  });
 }
 
-
-function fmemberconfirm_submit(f)
-{
-    document.getElementById("btn_submit").disabled = true;
-
-    return true;
-}
 </script>
 <!-- } 회원 비밀번호 확인 끝 -->
