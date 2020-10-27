@@ -4,7 +4,6 @@ include_once(G5_LIB_PATH."/register.lib.php");
 
 $mb_recommend = trim($_POST["reg_mb_recommend"]);
 
-$mb_recommend = "100010";
 $sql = "select * from " . $g5['member_table'] . " where mb_10 = '" . $mb_recommend . "'";
 $result = sql_fetch($sql);
 $cnt = count($result);

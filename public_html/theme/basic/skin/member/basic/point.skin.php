@@ -49,7 +49,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
         <?php if($po_count == 0){ ?>
         <tr>
-            <td colspan = "4"> 추천 회원이 없습니다.</td>
+            <td colspan = "4"> 받은내역이 없습니다.</td>
         </tr>            
         <?php } ?>
     </table>
